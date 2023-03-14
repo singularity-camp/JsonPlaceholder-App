@@ -31,20 +31,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    flavorDimensions "platform"
-    productFlavors{
-        google {
-            dimension "platform"
-        }
-        huawei {
-            applicationIdSuffix ".huawei"
-            dimension "platform"
-        }
-        debug {
-            applicationIdSuffix ".debug"
-        }
-    }
 }
 
 
