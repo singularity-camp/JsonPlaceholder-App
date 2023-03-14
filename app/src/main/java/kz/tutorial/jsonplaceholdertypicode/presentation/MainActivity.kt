@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode
+package kz.tutorial.jsonplaceholdertypicode.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kz.tutorial.jsonplaceholdertypicode.*
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {

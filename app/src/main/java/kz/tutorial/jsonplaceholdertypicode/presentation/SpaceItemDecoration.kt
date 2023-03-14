@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode
+package kz.tutorial.jsonplaceholdertypicode.presentation
 
 import android.graphics.Rect
 import android.view.View
