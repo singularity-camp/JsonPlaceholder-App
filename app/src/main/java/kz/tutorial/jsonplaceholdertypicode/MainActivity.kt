@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
     lateinit var rvPosts: RecyclerView
     lateinit var postsAdapter: PostAdapter
+
+//    val api: MainApi by inject<MainApi>()
+    val api: MainApi by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadPosts() {
         lifecycleScope.launch {
-            val posts = NetworkManager.apiService.getPosts()
+            val posts = api.getPosts()
             withContext(Dispatchers.Main) {
                 postsAdapter.setData(posts)
             }
