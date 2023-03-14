@@ -17,7 +17,7 @@
             style="@style/Header1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_main" />
+            android:textColor="@color/text_01" />
 
         <TextView
             android:id="@+id/tv_body"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@color/text_support" />
+            android:textColor="@color/text_02" />
 
     </LinearLayout>
 

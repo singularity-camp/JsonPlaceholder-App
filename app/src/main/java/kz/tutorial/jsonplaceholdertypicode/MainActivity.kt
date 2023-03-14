@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         rvPosts.layoutManager = layoutManager
 
-        val spaceItemDecoration = SpaceItemDecoration(verticalSpaceInDp = 16, horizontalSpaceInDp = 16)
+        val spaceItemDecoration = SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
         rvPosts.addItemDecoration(spaceItemDecoration)
     }
 
