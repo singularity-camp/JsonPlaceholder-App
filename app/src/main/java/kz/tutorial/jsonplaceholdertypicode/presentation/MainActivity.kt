@@ -2,53 +2,21 @@ package kz.tutorial.jsonplaceholdertypicode.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kz.tutorial.jsonplaceholdertypicode.*
-import org.koin.android.ext.android.inject
+import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment
 
 class MainActivity : AppCompatActivity() {
-    lateinit var rvPosts: RecyclerView
-    lateinit var postsAdapter: PostAdapter
-
-//    val api: MainApi by inject<MainApi>()
-    val api: MainApi by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupAdapter()
-        setupRecycler()
-        loadPosts()
+        initPostsFragment()
     }
 
-    private fun setupAdapter() {
-        postsAdapter = PostAdapter(layoutInflater)
-        postsAdapter.listener = ClickListener { showToast("Post = ${it.title}") }
-    }
-
-    private fun setupRecycler() {
-        rvPosts = findViewById(R.id.rv_posts)
-        rvPosts.adapter = postsAdapter
-
-        val layoutManager = LinearLayoutManager(this)
-        rvPosts.layoutManager = layoutManager
-
-        val spaceItemDecoration = SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
-        rvPosts.addItemDecoration(spaceItemDecoration)
-    }
-
-    private fun loadPosts() {
-        lifecycleScope.launch {
-            val posts = api.getPosts()
-            withContext(Dispatchers.Main) {
-                postsAdapter.setData(posts)
-            }
-        }
+    private fun initPostsFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fl_container, PostsFragment())
+            .commit()
     }
 }
