@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode
+package kz.tutorial.jsonplaceholdertypicode.presentation.extensions
 
 import android.content.Context
 import android.widget.Toast

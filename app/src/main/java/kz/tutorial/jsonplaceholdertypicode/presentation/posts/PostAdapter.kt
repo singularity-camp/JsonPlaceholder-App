@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation
+package kz.tutorial.jsonplaceholdertypicode.presentation.posts
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import kz.tutorial.jsonplaceholdertypicode.Post
+import kz.tutorial.jsonplaceholdertypicode.domain.Post
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 
 class PostAdapter(private val layoutInflater: LayoutInflater) :
     RecyclerView.Adapter<PostViewHolder>() {

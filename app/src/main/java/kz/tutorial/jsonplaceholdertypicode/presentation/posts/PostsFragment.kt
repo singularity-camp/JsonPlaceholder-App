@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.presentation.ClickListener
-import kz.tutorial.jsonplaceholdertypicode.presentation.PostAdapter
-import kz.tutorial.jsonplaceholdertypicode.presentation.SpaceItemDecoration
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PostsFragment : Fragment() {

@@ -1,6 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
-import kz.tutorial.jsonplaceholdertypicode.MainApi
+import kz.tutorial.jsonplaceholdertypicode.data.network.MainApi
 import kz.tutorial.jsonplaceholdertypicode.constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
