@@ -2,21 +2,34 @@ package kz.tutorial.jsonplaceholdertypicode.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navHostFragmentMainActivity: NavHostFragment
+    private lateinit var navControllerMainActivity: NavController
+    private lateinit var bnvMainActivity: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initPostsFragment()
+        initNavigationHost()
+        initBottomNavigationBar()
     }
 
-    private fun initPostsFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fl_container, PostsFragment())
-            .commit()
+    private fun initNavigationHost() {
+        navHostFragmentMainActivity =
+            supportFragmentManager.findFragmentById(R.id.nav_host_main) as NavHostFragment
+        navControllerMainActivity = navHostFragmentMainActivity.navController
+    }
+
+    private fun initBottomNavigationBar() {
+        bnvMainActivity = findViewById(R.id.bnv_main)
+        bnvMainActivity.setupWithNavController(navControllerMainActivity)
     }
 }
