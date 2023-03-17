@@ -13,26 +13,82 @@
         android:gravity="start"
         tools:text="Post 1"
         style="@style/Header1"
+        android:textStyle="bold"
         android:textColor="@color/text_01"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="16dp"/>
 
-    <TextView
-        android:id="@+id/tv_author"
+    <LinearLayout
+        android:id="@+id/container_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        android:layout_marginHorizontal="16dp"
-        android:text="By: Firstname Lastname"
-        android:textColor="@color/text_01"
-        style="@style/Header4"/>
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/by"
+            android:textColor="@color/text_01"
+            style="@style/Header4"
+            />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="16dp"
+            android:text="Firstname Lastname"
+            android:textColor="@color/main_01"
+            style="@style/Header4"/>
+
+    </LinearLayout>
     
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_author"
+        app:layout_constraintTop_toBottomOf="@id/container_author"
         android:layout_margin="16dp"
         style="@style/Header4"
         android:textColor="@color/text_01"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_content"
+        />
+    
+    <TextView
+        android:id="@+id/tv_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        android:text="@string/comments"
+        android:textColor="@color/text_01"
+        style="@style/Header3"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/tv_comments"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/show_all"
+        android:textColor="@color/links"
+        style="@style/Header4"
+        android:layout_marginHorizontal="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comments_5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_comments" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
