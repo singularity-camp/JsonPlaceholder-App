@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
@@ -23,6 +25,7 @@ class FragmentPostDetails : Fragment() {
     private lateinit var tvPostTitle: TextView
     private lateinit var tvPostAuthor: TextView
     private lateinit var tvPostBody: TextView
+    private lateinit var tvShowAllComments: TextView
     private lateinit var rvPostComments: RecyclerView
     private lateinit var rvAdapter: CommentsAdapter
     private lateinit var rvLayoutManager: LinearLayoutManager
@@ -39,6 +42,8 @@ class FragmentPostDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews(view)
+        getPostID()
+        initShowAllCommentsBtn()
         initRecyclerView()
         initContent()
         initObservers()
@@ -49,7 +54,20 @@ class FragmentPostDetails : Fragment() {
             tvPostTitle = findViewById(R.id.post_details_tv_post_title)
             tvPostAuthor = findViewById(R.id.post_details_tv_post_author)
             tvPostBody = findViewById(R.id.post_details_tv_post_body)
+            tvShowAllComments = findViewById(R.id.post_details_tv_show_all)
             rvPostComments = findViewById(R.id.post_details_rv_comments)
+        }
+    }
+
+    private fun getPostID() {
+        postID = arguments?.getInt(POST_ID)
+    }
+
+    private fun initShowAllCommentsBtn() {
+        tvShowAllComments.setOnClickListener {
+            val bundle = bundleOf(POST_ID to postID)
+            NavHostFragment.findNavController(this)
+                .navigate(R.id.action_fragmentPostDetails_to_fragmentComments, bundle)
         }
     }
 
@@ -59,12 +77,11 @@ class FragmentPostDetails : Fragment() {
         rvLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvPostComments.layoutManager = rvLayoutManager
         val spaceItemDecoration =
-            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 4)
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 8)
         rvPostComments.addItemDecoration(spaceItemDecoration)
     }
 
     private fun initContent() {
-        postID = arguments?.getInt(POST_ID)
         vmPost.setPostID(postID)
         vmComments.setPostID(postID)
     }
