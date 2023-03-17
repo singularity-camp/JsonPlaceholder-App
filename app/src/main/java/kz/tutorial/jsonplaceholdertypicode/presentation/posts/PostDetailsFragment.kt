@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,6 +17,10 @@ class PostDetailsFragment : Fragment() {
 
     private val vm: PostDetailsViewModel by viewModel()
     val args: PostDetailsFragmentArgs by navArgs()
+
+    private lateinit var tvTitle : TextView
+    private lateinit var tvAuthor : TextView
+    private lateinit var tvContent : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +35,25 @@ class PostDetailsFragment : Fragment() {
         val currId = args.id
         vm.userId = currId
 
-        vm.currPostLiveData.observe(viewLifecycleOwner) {
-            Timber.e(it.toString())
-        }
+        initViews(view)
+        initObservers()
 
+    }
+
+    private fun initViews(view : View) {
+        with(view) {
+            tvTitle = findViewById(R.id.tv_title)
+            tvAuthor = findViewById(R.id.tv_author)
+            tvContent = findViewById(R.id.tv_content)
+        }
+    }
+
+    private fun initObservers() {
+        vm.currPostLiveData.observe(viewLifecycleOwner) {
+            tvTitle.text = it.title
+            tvAuthor.text = "By: ${it.userId}"
+            tvContent.text = it.body
+        }
     }
 
 }
