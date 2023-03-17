@@ -7,29 +7,39 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments.CommentsAdapter
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments.CommentsViewModel
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 
 class FragmentPostDetails : Fragment() {
 
-    private val vm: PostDetailsViewModel by viewModels()
+    private val vmPost: PostDetailsViewModel by viewModels()
+    private val vmComments: CommentsViewModel by viewModels()
 
     private lateinit var tvPostTitle: TextView
     private lateinit var tvPostAuthor: TextView
     private lateinit var tvPostBody: TextView
+    private lateinit var rvPostComments: RecyclerView
+    private lateinit var rvAdapter: CommentsAdapter
+    private lateinit var rvLayoutManager: LinearLayoutManager
     private var postID: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_post_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initViews(view)
+        initRecyclerView()
         initContent()
         initObservers()
     }
@@ -39,19 +49,35 @@ class FragmentPostDetails : Fragment() {
             tvPostTitle = findViewById(R.id.post_details_tv_post_title)
             tvPostAuthor = findViewById(R.id.post_details_tv_post_author)
             tvPostBody = findViewById(R.id.post_details_tv_post_body)
+            rvPostComments = findViewById(R.id.post_details_rv_comments)
         }
+    }
+
+    private fun initRecyclerView() {
+        rvAdapter = CommentsAdapter(layoutInflater)
+        rvPostComments.adapter = rvAdapter
+        rvLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvPostComments.layoutManager = rvLayoutManager
+        val spaceItemDecoration =
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 4)
+        rvPostComments.addItemDecoration(spaceItemDecoration)
     }
 
     private fun initContent() {
         postID = arguments?.getInt(POST_ID)
-        vm.setPostID(postID)
+        vmPost.setPostID(postID)
+        vmComments.setPostID(postID)
     }
 
     private fun initObservers() {
-        vm.postLiveData.observe(viewLifecycleOwner) {
+        vmPost.postLiveData.observe(viewLifecycleOwner) {
             tvPostTitle.text = it.title
             tvPostAuthor.text = it.id.toString()
             tvPostBody.text = it.body
+        }
+
+        vmComments.commentsLiveData.observe(viewLifecycleOwner) {
+            rvAdapter.setData(it)
         }
     }
 
