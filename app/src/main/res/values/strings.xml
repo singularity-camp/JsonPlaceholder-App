@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">JsonPlaceholder Typicode</string>
+    <string name="posts">Posts</string>
+    <string name="album">Album</string>
+    <string name="users">Users</string>
+    <string name="profile">Profile</string>
+    <string name="by">By:</string>
+    <string name="comments">Comments</string>
+    <string name="show_all">Show all</string>
+    <string name="email">Email:</string>
 </resources>

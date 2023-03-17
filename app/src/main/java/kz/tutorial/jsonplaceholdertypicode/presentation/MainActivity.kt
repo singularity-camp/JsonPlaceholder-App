@@ -2,6 +2,12 @@ package kz.tutorial.jsonplaceholdertypicode.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment
 
@@ -11,12 +17,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initPostsFragment()
-    }
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-    private fun initPostsFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fl_container, PostsFragment())
-            .commit()
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container)
+        val navController = navHostFragment?.findNavController()
+
+        if(navController != null) {
+            navView.setupWithNavController(navController)
+        }
+
     }
 }
