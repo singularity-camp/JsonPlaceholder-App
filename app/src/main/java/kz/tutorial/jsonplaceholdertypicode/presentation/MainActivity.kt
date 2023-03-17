@@ -23,25 +23,9 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container)
         val navController = navHostFragment?.findNavController()
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.postsFragment,
-                R.id.albumFragment,
-                R.id.usersFragment,
-                R.id.profileFragment
-            )
-        )
-
         if(navController != null) {
             navView.setupWithNavController(navController)
         }
 
-//        initPostsFragment()
     }
-
-//    private fun initPostsFragment() {
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.fl_container, PostsFragment())
-//            .commit()
-//    }
 }

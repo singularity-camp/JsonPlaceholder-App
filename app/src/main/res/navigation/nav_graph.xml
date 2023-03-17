@@ -9,7 +9,11 @@
         android:id="@+id/postsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment"
         android:label="PostsFragment"
-        tools:layout="@layout/fragment_posts"/>
+        tools:layout="@layout/fragment_posts" >
+        <action
+            android:id="@+id/action_postsFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/albumFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.album.AlbumFragment"
@@ -25,4 +29,15 @@
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostDetailsFragment"
+        android:label="fragment_post_details"
+        tools:layout="@layout/fragment_post_details">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1"/>
+    </fragment>
+
 </navigation>
