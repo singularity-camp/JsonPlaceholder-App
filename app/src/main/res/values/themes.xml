@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:windowBackground">@color/ui_02</item>
+        <item name="android:actionMenuTextColor">@color/text_01</item>
         <!-- Customize your theme here. -->
         <item name="cardViewStyle">@style/DefaultCardView</item>
 
