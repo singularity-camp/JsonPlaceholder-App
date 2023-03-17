@@ -1,1 +1,1 @@
-![First Task](C:\Users\Kazybek\StudioProjects\JsonPlaceholder-App\firsttask.jpg)
+![First Task](https://github.com/singularity-camp/JsonPlaceholder-App/blob/feature/navigation/kazybek/firsttask.jpg)
