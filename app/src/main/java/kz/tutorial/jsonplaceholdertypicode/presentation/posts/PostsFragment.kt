@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -43,7 +45,9 @@ class PostsFragment : Fragment() {
     private fun initAdapter() {
         adapter = PostAdapter(layoutInflater)
         adapter.listener = ClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragment_posts_to_fragmentPostDetails)
+            val bundle = bundleOf(POST_ID to it.id)
+            NavHostFragment.findNavController(this)
+                .navigate(R.id.action_fragment_posts_to_fragmentPostDetails, bundle)
         }
     }
 
@@ -53,7 +57,8 @@ class PostsFragment : Fragment() {
         rvPosts.adapter = adapter
         rvPosts.layoutManager = LinearLayoutManager(currentContext)
 
-        val spaceItemDecoration = SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
+        val spaceItemDecoration =
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
         rvPosts.addItemDecoration(spaceItemDecoration)
     }
 

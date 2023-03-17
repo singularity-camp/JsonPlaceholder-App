@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode
+package kz.tutorial.jsonplaceholdertypicode.presentation.posts.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsViewModel
+import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
 
 class FragmentPostDetails : Fragment() {
 
@@ -17,6 +17,7 @@ class FragmentPostDetails : Fragment() {
     private lateinit var tvPostTitle: TextView
     private lateinit var tvPostAuthor: TextView
     private lateinit var tvPostBody: TextView
+    private var postID: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +30,7 @@ class FragmentPostDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
+        initContent()
         initObservers()
     }
 
@@ -40,6 +42,11 @@ class FragmentPostDetails : Fragment() {
         }
     }
 
+    private fun initContent() {
+        postID = arguments?.getInt(POST_ID)
+        vm.setPostID(postID)
+    }
+
     private fun initObservers() {
         vm.postLiveData.observe(viewLifecycleOwner) {
             tvPostTitle.text = it.title
@@ -47,4 +54,5 @@ class FragmentPostDetails : Fragment() {
             tvPostBody.text = it.body
         }
     }
+
 }

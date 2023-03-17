@@ -11,14 +11,12 @@ class PostDetailsViewModel : ViewModel() {
     private val _postLiveData: MutableLiveData<Post> = MutableLiveData()
     val postLiveData: LiveData<Post> = _postLiveData
 
-    init {
-        getPost()
-    }
-
-    private fun getPost() {
-        viewModelScope.launch {
-            val post : Post = PostRetrofitBuilder.postAPIService.getPostsOne()
-            _postLiveData.postValue(post)
+    fun setPostID(ID: Int?) {
+        if (ID != null) {
+            viewModelScope.launch {
+                val post: Post = PostRetrofitBuilder.postAPIService.getPostsOne(ID)
+                _postLiveData.postValue(post)
+            }
         }
     }
 }
