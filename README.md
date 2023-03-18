@@ -1,1 +1,0 @@
-![First Task](https://github.com/singularity-camp/JsonPlaceholder-App/blob/feature/navigation/kazybek/firsttask.jpg)
