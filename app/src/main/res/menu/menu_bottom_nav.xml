@@ -5,29 +5,23 @@
         android:id="@+id/postsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_posts"
-        android:title="@string/posts"
-        tools:targetApi="o" />
+        android:title="@string/posts"/>
 
     <item
         android:id="@+id/albumFragment"
         android:enabled="true"
         android:icon="@drawable/ic_album"
-        android:title="@string/album"
-        tools:targetApi="o" />
+        android:title="@string/album"/>
 
     <item
         android:id="@+id/usersFragment"
         android:enabled="true"
         android:icon="@drawable/ic_users"
-        android:iconTint="@color/text_01"
-        android:title="@string/users"
-        tools:targetApi="o" />
+        android:title="@string/users"/>
     <item
         android:id="@+id/profileFragment"
         android:enabled="true"
         android:icon="@drawable/ic_profile"
-        android:iconTint="@color/text_01"
-        android:title="@string/profile"
-        tools:targetApi="o" />
+        android:title="@string/profile"/>
 
 </menu>
