@@ -1,11 +1,11 @@
 package kz.tutorial.jsonplaceholdertypicode.presentation.posts
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,53 +15,36 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PostDetailsFragment : Fragment() {
+class PostCommentsFragment : Fragment() {
 
-    private val vm: PostDetailsViewModel by viewModel()
-    val args: PostDetailsFragmentArgs by navArgs()
-
-    private lateinit var tvTitle : TextView
-    private lateinit var tvAuthor : TextView
-    private lateinit var tvContent : TextView
+    private val vm: PostCommentsViewModel by viewModel()
+    val args: PostCommentsFragmentArgs by navArgs()
 
     lateinit var rvComments: RecyclerView
     lateinit var adapter: CommentsAdapter
 
-    lateinit var btnExtend : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_post_details, container, false)
+        return inflater.inflate(R.layout.fragment_post_comments, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val currId = args.id
+        val currId = args.postId
         vm.userId = currId
 
         initViews(view)
         initAdapter()
         initRecycler()
         initObservers()
-
     }
 
     private fun initViews(view : View) {
-        with(view) {
-            tvTitle = findViewById(R.id.tv_title)
-            tvAuthor = findViewById(R.id.tv_author)
-            tvContent = findViewById(R.id.tv_content)
-
-            rvComments = findViewById(R.id.rv_comments_5)
-
-            btnExtend = findViewById(R.id.btn_extend)
-            btnExtend.setOnClickListener {
-                findNavController().navigate(PostDetailsFragmentDirections.actionPostDetailsFragmentToPostCommentsFragment(args.id))
-            }
-        }
+        rvComments = view.findViewById(R.id.rv_comments_max)
     }
 
     private fun initAdapter() {
@@ -82,14 +65,11 @@ class PostDetailsFragment : Fragment() {
     }
 
     private fun initObservers() {
-        vm.currPostLiveData.observe(viewLifecycleOwner) {
-            tvTitle.text = it.title
-            tvAuthor.text = "Firstname Lastname"
-            tvContent.text = it.body
-        }
         vm.commentsLiveData.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
     }
+
+
 
 }

@@ -38,6 +38,19 @@
             android:name="id"
             app:argType="integer"
             android:defaultValue="1"/>
+        <action
+            android:id="@+id/action_postDetailsFragment_to_postCommentsFragment"
+            app:destination="@id/postCommentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postCommentsFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostCommentsFragment"
+        android:label="fragment_post_comments"
+        tools:layout="@layout/fragment_post_comments" >
+        <argument
+            android:name="postId"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 
 </navigation>
