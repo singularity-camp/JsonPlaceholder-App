@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -32,6 +34,8 @@ class PostDetailsFragment : Fragment() {
         parametersOf(args.postId)
     }
 
+    lateinit var adapter: CommentsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,6 +51,7 @@ class PostDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
+        initAdapter()
         setupRecyclerView()
         initObservers()
     }
@@ -61,8 +66,24 @@ class PostDetailsFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView() {
+    private fun initAdapter() {
+        adapter = CommentsAdapter(
+                layoutInflater = layoutInflater,
+                onEmailClick = this::onEmailClick
+            )
+    }
 
+    private fun onEmailClick(email: String) {
+
+    }
+
+    private fun setupRecyclerView() {
+        rvComments.adapter = adapter
+        rvComments.layoutManager = LinearLayoutManager(context)
+
+        val spaceItemDecoration =
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
+        rvComments.addItemDecoration(spaceItemDecoration)
     }
 
     private fun initObservers() {
@@ -82,6 +103,6 @@ class PostDetailsFragment : Fragment() {
     }
 
     private fun onCommentsUpdated(comments: List<Comment>) {
-
+        adapter.submitList(comments)
     }
 }
