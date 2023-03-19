@@ -6,8 +6,9 @@ import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostComments
 import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetUserUseCase
 
 class PostDetailsViewModel(
+    private val postId: Int,
     private val getPostByIdUseCase: GetPostByIdUseCase,
-    private val getPostComments: GetPostComments,
+    private val getPostCommentsUseCase: GetPostComments,
     private val getUserUseCase: GetUserUseCase,
 ) : ViewModel() {
 
