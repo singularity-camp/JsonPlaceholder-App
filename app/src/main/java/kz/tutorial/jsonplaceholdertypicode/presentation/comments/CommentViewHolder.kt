@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.posts.details
+package kz.tutorial.jsonplaceholdertypicode.presentation.comments
 
 import android.view.View
 import android.widget.TextView

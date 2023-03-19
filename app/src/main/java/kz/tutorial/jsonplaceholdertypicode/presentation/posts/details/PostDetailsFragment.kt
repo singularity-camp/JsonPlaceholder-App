@@ -13,6 +13,7 @@ import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsAdapter
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
 import org.koin.androidx.viewmodel.ext.android.viewModel
