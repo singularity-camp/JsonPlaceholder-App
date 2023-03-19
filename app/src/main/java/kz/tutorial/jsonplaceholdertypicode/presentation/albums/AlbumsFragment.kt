@@ -18,12 +18,36 @@ class AlbumsFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_placeholder, container, false)
 
-        //FAQ: Как пользоваться Glide-ом
+        /*TODO: Вам нужно скачать список альбомов и показать его.
+        Для упрощения задачи можете пока не показывать пользователя которому принадлежит
 
+        Для решения этого вам надо добавить соответствующий запрос в MainApi
+        Затем Создайте AlbumRepository и AlbumRepositoryImpl
+        После этого Добавьте GetAlbumsUseCase
+        Затем уже создайте AlbumsViewModel
+        После этого добавьте инструкции в di. Сначала RepositoryModule
+        (не забудьте, что вам нужно вернуть AlbumsRepository создав Albums RepositoryImpl)
+        Затем создайте инструкции для UseCaseModule и ViewModelModule
+
+        Затем можете засетапить либо AlbumsViewModel и написать логику его работы),
+        либо создать UI (Layout, Fragment) и только потом ViewModel)
+
+
+        После того как вы всё это выполните, можете добавить пользователя
+        Для этого создайте дата класс AlbumsWithUser где будут лежать нужные поля
+        Чтобы не сильно усложнять логику пропищите в GetAlbumsWithUserUseCase
+        в ней запускайте запрос на альбомы, потом запрос на всех пользователей
+        и используя два списка, создайте список объектов AlbumsWithUser
+        (для каждого альбома ищете пользователя во втором списке
+        и на основе этих двух элементов создаете нужный вам объект и добавляете в свой новый список)
+        Далее обновляете ваш адаптер чтобы он принимал AlbumsWithUser, ну и пару других классов тоже)
+        */
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //FAQ: Как пользоваться Glide-ом
+
         //Вьюшка в которую мы будем загружать изображение
         //После того как поймете как работать с глайдом, уберите её из этого экрана и код ниже
         val ivExample: ImageView = view.findViewById(R.id.iv_example)
