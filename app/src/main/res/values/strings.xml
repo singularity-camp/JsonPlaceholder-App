@@ -4,4 +4,7 @@
     <string name="albums">Albums</string>
     <string name="users">Users</string>
     <string name="profile">Profile</string>
+    <string name="show_all">Show All</string>
+    <string name="by_w_colon">By:</string>
+    <string name="comments">Comments</string>
 </resources>
