@@ -7,7 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.presentation.extensions.lazyView
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.lazyView
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.extensions
+package kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions
 
 import android.app.Activity
 import android.view.View

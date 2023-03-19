@@ -14,6 +14,7 @@ import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -74,7 +75,8 @@ class PostDetailsFragment : Fragment() {
     }
 
     private fun onEmailClick(email: String) {
-
+        //Проверьте startEmail чтобы посмотреть что происходит под капотом
+        context?.startEmail(email)
     }
 
     private fun setupRecyclerView() {
