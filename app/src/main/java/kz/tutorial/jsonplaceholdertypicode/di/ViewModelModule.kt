@@ -1,5 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
+import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -14,6 +15,12 @@ val viewModelModule = module {
             getPostByIdUseCase = get(),
             getPostCommentsUseCase = get(),
             getUserUseCase = get()
+        )
+    }
+    viewModel { (postId: Int) ->
+        CommentsViewModel(
+            postId = postId,
+            getPostCommentsUseCase = get()
         )
     }
 }

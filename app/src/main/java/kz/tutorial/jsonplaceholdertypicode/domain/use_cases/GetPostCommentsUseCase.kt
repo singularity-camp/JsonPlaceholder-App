@@ -5,7 +5,7 @@ import kz.tutorial.jsonplaceholdertypicode.domain.repositories.CommentsRepositor
 
 private const val NO_LIMIT = -1
 
-class GetPostComments(private val commentsRepository: CommentsRepository) {
+class GetPostCommentsUseCase(private val commentsRepository: CommentsRepository) {
     suspend operator fun invoke(postId: Int, limitBy: Int = NO_LIMIT): List<Comment> {
         if (limitBy == NO_LIMIT || limitBy < 0) {
             return commentsRepository.getPostComments(postId)

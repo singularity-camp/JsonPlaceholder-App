@@ -9,7 +9,7 @@ import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
 import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostByIdUseCase
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostComments
+import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostCommentsUseCase
 import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetUserUseCase
 
 private const val COMMENTS_LIMIT = 5
@@ -17,7 +17,7 @@ private const val COMMENTS_LIMIT = 5
 class PostDetailsViewModel(
     private val postId: Int,
     private val getPostByIdUseCase: GetPostByIdUseCase,
-    private val getPostCommentsUseCase: GetPostComments,
+    private val getPostCommentsUseCase: GetPostCommentsUseCase,
     private val getUserUseCase: GetUserUseCase,
 ) : ViewModel() {
 

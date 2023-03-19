@@ -23,7 +23,12 @@
             app:argType="integer"
             android:defaultValue="0"  />
 
+        <action
+            android:id="@+id/action_postDetailsFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/albumsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
@@ -36,6 +41,17 @@
         android:id="@+id/usersFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
         android:label="UsersFragment" />
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsFragment"
+        android:label="CommentsFragment">
+
+        <argument
+            android:name="postId"
+            app:argType="integer"
+            android:defaultValue="0"  />
+
+    </fragment>
 
 
 </navigation>
