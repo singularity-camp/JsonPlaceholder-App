@@ -45,10 +45,14 @@ class PostsFragment : Fragment() {
     private fun initAdapter() {
         adapter = PostAdapter(layoutInflater)
         adapter.listener = ClickListener {
-            val bundle = bundleOf(POST_ID to it.id)
-            NavHostFragment.findNavController(this)
-                .navigate(R.id.action_fragment_posts_to_fragmentPostDetails, bundle)
+            onPostClicked(it.id)
         }
+    }
+
+    private fun onPostClicked(id: Int) {
+        val bundle = bundleOf(POST_ID to id)
+        NavHostFragment.findNavController(this)
+            .navigate(R.id.action_fragment_posts_to_fragmentPostDetails, bundle)
     }
 
     private fun initRecycler() {
