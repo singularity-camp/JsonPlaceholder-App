@@ -9,11 +9,9 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
     override suspend fun getAlbums(): List<Album> {
         val remoteAlbums = mainApi.getAlbums()
         val users = mainApi.getUsers()
-        val albums = remoteAlbums.map { toAlbum(it) }.toMutableList()
-        albums.forEachIndexed { index, item ->
-            System.out.println("User = $item")
-            val user = mainApi.getUser(item.userId)
-            item.username = user.username
+        val albums = remoteAlbums.map { remoteAlbum ->
+            val correspondingUser = users.find { user -> user.id == remoteAlbum.userId}
+            toAlbum(remoteAlbum, correspondingUser)
         }
 
         return albums
