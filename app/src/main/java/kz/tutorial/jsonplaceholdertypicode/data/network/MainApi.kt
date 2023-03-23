@@ -21,6 +21,9 @@ interface MainApi {
     @GET("comments")
     suspend fun getPostComments(@Query("postId") postId: Int): List<Comment>
 
+    @GET("users")
+    suspend fun getUsers(): List<User>
+
     @GET("users/{id}")
     suspend fun getUser(@Path("id") userId: Int): User
 
