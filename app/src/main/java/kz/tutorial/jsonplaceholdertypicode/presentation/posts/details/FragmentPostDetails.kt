@@ -14,10 +14,11 @@ import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments.CommentsAdapter
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentPostDetails : Fragment() {
 
-    private val vmPost: PostDetailsViewModel by viewModels()
+    private val vmPost: PostDetailsViewModel by viewModel()
     private val vmComments: CommentsViewModel by viewModels()
 
     private lateinit var tvPostTitle: TextView
@@ -59,7 +60,7 @@ class FragmentPostDetails : Fragment() {
         rvLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvPostComments.layoutManager = rvLayoutManager
         val spaceItemDecoration =
-            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 4)
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 0)
         rvPostComments.addItemDecoration(spaceItemDecoration)
     }
 
