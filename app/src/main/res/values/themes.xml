@@ -14,18 +14,7 @@
         <item name="android:windowBackground">@color/ui_02</item>
         <!-- Customize your theme here. -->
         <item name="cardViewStyle">@style/DefaultCardView</item>
-        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
 
-    </style>
-
-    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
-    </style>
-
-    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
-        <item name="colorSurface">@color/ui_01</item>
-        <item name="colorOnSurface">@color/ui_06</item>
-        <item name="colorPrimary">@color/main_01</item>
     </style>
 
 </resources>
