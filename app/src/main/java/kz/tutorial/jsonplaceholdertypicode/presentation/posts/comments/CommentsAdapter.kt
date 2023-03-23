@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.domain.Comment
 
 class CommentsAdapter(private val layoutInflater: LayoutInflater) :
     RecyclerView.Adapter<CommentsViewHolder>() {

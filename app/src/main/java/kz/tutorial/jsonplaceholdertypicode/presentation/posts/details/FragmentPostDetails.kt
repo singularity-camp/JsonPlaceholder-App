@@ -1,25 +1,22 @@
 package kz.tutorial.jsonplaceholdertypicode.presentation.posts.details
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments.CommentsAdapter
-import kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentPostDetails : Fragment() {
 
     private val vmPost: PostDetailsViewModel by viewModel()
-    private val vmComments: CommentsViewModel by viewModels()
 
     private lateinit var tvPostTitle: TextView
     private lateinit var tvPostAuthor: TextView
@@ -67,7 +64,6 @@ class FragmentPostDetails : Fragment() {
     private fun initContent() {
         postID = arguments?.getInt(POST_ID)
         vmPost.setPostID(postID)
-        vmComments.setPostID(postID)
     }
 
     private fun initObservers() {
@@ -77,7 +73,7 @@ class FragmentPostDetails : Fragment() {
             tvPostBody.text = it.body
         }
 
-        vmComments.commentsLiveData.observe(viewLifecycleOwner) {
+        vmPost.commentsLiveData.observe(viewLifecycleOwner) {
             rvAdapter.setData(it)
         }
     }

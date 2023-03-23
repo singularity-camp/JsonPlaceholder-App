@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.posts.comments
+package kz.tutorial.jsonplaceholdertypicode.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
