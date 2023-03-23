@@ -69,12 +69,15 @@ class FragmentPostDetails : Fragment() {
     private fun initObservers() {
         vmPost.postLiveData.observe(viewLifecycleOwner) {
             tvPostTitle.text = it.title
-            tvPostAuthor.text = it.id.toString()
             tvPostBody.text = it.body
         }
 
         vmPost.commentsLiveData.observe(viewLifecycleOwner) {
             rvAdapter.setData(it)
+        }
+
+        vmPost.userLiveData.observe(viewLifecycleOwner) {
+            tvPostAuthor.text = it.name
         }
     }
 

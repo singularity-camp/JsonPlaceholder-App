@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.domain.Comment
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 
 class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var tvCommentName: TextView = itemView.findViewById(R.id.tv_comment_name)
