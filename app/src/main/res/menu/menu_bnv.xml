@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fragment_posts"
+        android:enabled="true"
+        android:icon="@drawable/iv_posts"
+        android:title="@string/posts"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/fragment_albums"
+        android:enabled="true"
+        android:icon="@drawable/iv_albums"
+        android:title="@string/albums"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/fragment_users"
+        android:enabled="true"
+        android:icon="@drawable/iv_users"
+        android:title="@string/users"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/fragment_profile"
+        android:enabled="true"
+        android:icon="@drawable/iv_profile"
+        android:title="@string/profile"
+        app:showAsAction="ifRoom" />
+</menu>
