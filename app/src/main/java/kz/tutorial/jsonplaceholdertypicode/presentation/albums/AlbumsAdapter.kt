@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
+import kz.tutorial.jsonplaceholdertypicode.domain.models.AlbumsWithUser
 
 class AlbumsAdapter(private val layoutInflater: LayoutInflater) :
     RecyclerView.Adapter<AlbumViewHolder>() {
-    private val albums: MutableList<Album> = mutableListOf()
+    private val albums: MutableList<AlbumsWithUser> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val view = layoutInflater.inflate(R.layout.item_album, parent, false)
@@ -24,7 +24,7 @@ class AlbumsAdapter(private val layoutInflater: LayoutInflater) :
         return albums.size
     }
 
-    fun setData(newData: List<Album>) {
+    fun setData(newData: List<AlbumsWithUser>) {
         notifyItemRangeRemoved(0, albums.size)
         albums.clear()
         albums.addAll(newData)
