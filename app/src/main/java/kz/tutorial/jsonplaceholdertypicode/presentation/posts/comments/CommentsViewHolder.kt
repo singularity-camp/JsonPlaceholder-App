@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 
-class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CommentsViewHolder(itemView: View, private val listener: (String) -> Unit) : RecyclerView.ViewHolder(itemView) {
     private var tvCommentName: TextView = itemView.findViewById(R.id.tv_comment_name)
     private var tvCommentEmail: TextView = itemView.findViewById(R.id.tv_comment_email)
     private var tvCommentBody: TextView = itemView.findViewById(R.id.tv_comment_body)
@@ -15,5 +15,9 @@ class CommentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         tvCommentName.text = comment.name
         tvCommentEmail.text = comment.email
         tvCommentBody.text = comment.body
+
+        tvCommentEmail.setOnClickListener {
+            listener(comment.email)
+        }
     }
 }

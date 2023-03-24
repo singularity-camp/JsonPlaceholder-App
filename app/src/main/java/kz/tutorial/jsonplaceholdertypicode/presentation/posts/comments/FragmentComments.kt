@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentComments : Fragment() {
@@ -47,13 +48,18 @@ class FragmentComments : Fragment() {
     }
 
     private fun initRecyclerView() {
-        rvAdapter = CommentsAdapter(layoutInflater)
+        rvAdapter = CommentsAdapter(layoutInflater, this::onEmailClick)
         rvComments.adapter = rvAdapter
         rvLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvComments.layoutManager = rvLayoutManager
         val spaceItemDecoration =
             SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 2)
         rvComments.addItemDecoration(spaceItemDecoration)
+    }
+
+    private fun onEmailClick(email: String) {
+        //Проверьте startEmail чтобы посмотреть что происходит под капотом
+        context?.startEmail(email)
     }
 
     private fun initContent() {
