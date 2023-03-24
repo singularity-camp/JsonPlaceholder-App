@@ -4,4 +4,5 @@ import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 
 interface AlbumRepository {
     suspend fun getAlbums(): List<Album>
+    suspend fun getAlbum(albumId: Int): Album
 }

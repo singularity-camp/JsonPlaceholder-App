@@ -7,7 +7,7 @@ import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 
 class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val tvTitle: TextView = itemView.findViewById(R.id.tv_title)
+    private val tvTitle: TextView = itemView.findViewById(R.id.tv_album_title)
     val tvEmail: TextView = itemView.findViewById(R.id.tv_email)
     private val tvComment: TextView = itemView.findViewById(R.id.tv_comment)
 

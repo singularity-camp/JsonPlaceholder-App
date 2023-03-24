@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.AlbumsWithUser
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 
 class AlbumsAdapter(private val layoutInflater: LayoutInflater) :
     RecyclerView.Adapter<AlbumViewHolder>() {
     private val albums: MutableList<AlbumsWithUser> = mutableListOf()
+    var listener: ClickListener<AlbumsWithUser>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val view = layoutInflater.inflate(R.layout.item_album, parent, false)
@@ -18,6 +20,9 @@ class AlbumsAdapter(private val layoutInflater: LayoutInflater) :
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = albums[position]
         holder.bind(album)
+        holder.itemView.setOnClickListener {
+            listener?.onClick(album)
+        }
     }
 
     override fun getItemCount(): Int {

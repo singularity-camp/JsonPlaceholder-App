@@ -43,7 +43,7 @@ class PostAdapter(private val layoutInflater: LayoutInflater) :
 }
 
 class PostViewHolder(itemView: View) : ViewHolder(itemView) {
-    private var tvTitle: TextView = itemView.findViewById(R.id.tv_title)
+    private var tvTitle: TextView = itemView.findViewById(R.id.tv_album_title)
     private var tvBody: TextView = itemView.findViewById(R.id.tv_body)
 
     fun bind(post: Post) {

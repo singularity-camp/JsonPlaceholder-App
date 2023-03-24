@@ -8,4 +8,8 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumRepository {
     override suspend fun getAlbums(): List<Album> {
         return mainApi.getAlbums()
     }
+
+    override suspend fun getAlbum(albumId: Int): Album {
+        return mainApi.getAlbum(albumId)
+    }
 }
