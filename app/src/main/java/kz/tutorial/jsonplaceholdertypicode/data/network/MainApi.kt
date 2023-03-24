@@ -2,6 +2,7 @@ package kz.tutorial.jsonplaceholdertypicode.data.network
 
 import kz.tutorial.jsonplaceholdertypicode.data.models.RemoteAlbum
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Photo
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
 import retrofit2.http.GET
@@ -29,5 +30,11 @@ interface MainApi {
 
     @GET("albums")
     suspend fun getAlbums(): List<RemoteAlbum>
+
+    @GET("photos")
+    suspend fun getAlbumPhotos(@Query("albumId") albumId: Int): List<Photo>
+
+    @GET("photos")
+    suspend fun getAllPhotos(): List<Photo>
 
 }
