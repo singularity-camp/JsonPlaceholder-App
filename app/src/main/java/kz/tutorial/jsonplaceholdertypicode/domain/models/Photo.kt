@@ -4,8 +4,10 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class AlbumsWithUser(
-    val cover: String,
+data class Photo(
+    val id: Int,
+    val albumId: Int,
     val title: String,
-    val userName: String
+    val url: String,
+    val thumbnailUrl: String,
 ) : Parcelable
