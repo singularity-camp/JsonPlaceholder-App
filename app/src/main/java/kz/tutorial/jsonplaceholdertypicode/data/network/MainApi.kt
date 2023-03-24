@@ -1,5 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.data.network
 
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
@@ -22,5 +23,8 @@ interface MainApi {
 
     @GET("users/{id}")
     suspend fun getUser(@Path("id") userId: Int): User
+
+    @GET("albums")
+    suspend fun getAlbums(): List<Album>
 
 }
