@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
@@ -15,7 +16,7 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoratio
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhotosFragment : Fragment() {
-
+    val args: PhotosFragmentArgs by navArgs()
     private val vmPhotos: PhotosViewModel by viewModel()
 
     private lateinit var tvAlbumName: TextView
@@ -23,7 +24,7 @@ class PhotosFragment : Fragment() {
     private lateinit var ivSelector: ImageView
     private lateinit var rvPhotos: RecyclerView
     private lateinit var rvAdapter: PhotosAdapter
-    private var postID: Int? = null
+    private var postID: Int? = args.albumId
 
     override fun onCreateView(
         inflater: LayoutInflater,

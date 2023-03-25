@@ -2,15 +2,15 @@ package kz.tutorial.jsonplaceholdertypicode.presentation.albums
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.domain.models.AlbumsWithUser
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 
 class AlbumsAdapter(private val layoutInflater: LayoutInflater) :
-    RecyclerView.Adapter<AlbumViewHolder>() {
-    private val albums: MutableList<AlbumsWithUser> = mutableListOf()
-    var listener: ClickListener<AlbumsWithUser>? = null
+    androidx.recyclerview.widget.ListAdapter<Album, AlbumViewHolder>(DiffCallback()) {
+
+    var listener: ClickListener<Album>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val view = layoutInflater.inflate(R.layout.item_album, parent, false)
@@ -18,22 +18,21 @@ class AlbumsAdapter(private val layoutInflater: LayoutInflater) :
     }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val album = albums[position]
+        val album = getItem(position)
         holder.bind(album)
         holder.itemView.setOnClickListener {
             listener?.onClick(album)
         }
     }
 
-    override fun getItemCount(): Int {
-        return albums.size
+}
+
+private class DiffCallback : DiffUtil.ItemCallback<Album>() {
+    override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    fun setData(newData: List<AlbumsWithUser>) {
-        notifyItemRangeRemoved(0, albums.size)
-        albums.clear()
-        albums.addAll(newData)
-        notifyItemRangeInserted(0, albums.size)
+    override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
+        return oldItem == newItem
     }
-
 }

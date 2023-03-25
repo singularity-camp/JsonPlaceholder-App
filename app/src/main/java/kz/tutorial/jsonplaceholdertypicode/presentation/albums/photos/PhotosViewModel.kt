@@ -7,10 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Photo
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetAlbumUseCase
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPhotosUseCase
 
-class PhotosViewModel(private val getPhotosUseCase: GetPhotosUseCase, private val getAlbumUseCase: GetAlbumUseCase) : ViewModel() {
+class PhotosViewModel() : ViewModel() {
     private val _photos = MutableLiveData<List<Photo>>()
     val photos: LiveData<List<Photo>> = _photos
 
@@ -21,10 +19,6 @@ class PhotosViewModel(private val getPhotosUseCase: GetPhotosUseCase, private va
     fun getPhotos(albumId: Int?) {
         if (albumId != null) {
             viewModelScope.launch {
-                val albumName = getAlbumUseCase(albumId)
-                val photosList = getPhotosUseCase(albumId)
-                _photos.postValue(photosList)
-                _album.postValue(albumName)
             }
         }
     }

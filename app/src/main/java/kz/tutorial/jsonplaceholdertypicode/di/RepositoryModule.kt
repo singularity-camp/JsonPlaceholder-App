@@ -8,7 +8,5 @@ val repositoryModule = module {
     factory<PostsRepository> { PostsRepositoryImpl(get()) }
     factory<CommentsRepository> { CommentsRepositoryImpl(get()) }
     factory<UserRepository> { UserRepositoryImpl(get()) }
-    factory<AlbumRepository> { AlbumsRepositoryImpl(get()) }
-    factory<UsersRepository> { UsersRepositoryImpl(get()) }
-    factory<PhotosRepository> { PhotosRepositoryImpl(get()) }
+    factory<AlbumsRepository> { AlbumsRepositoryImpl(get()) }
 }

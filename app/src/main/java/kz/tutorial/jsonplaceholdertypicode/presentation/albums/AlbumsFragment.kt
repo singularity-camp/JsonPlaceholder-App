@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,10 +43,14 @@ class AlbumsFragment : Fragment() {
     private fun initAdapter() {
         rvAdapter = AlbumsAdapter(layoutInflater)
         rvAdapter.listener = ClickListener {
-            val bundle = bundleOf(POST_ID to id)
-            NavHostFragment.findNavController(this)
-                .navigate(R.id.action_albumsFragment_to_photosFragment, bundle)
+            onAlbumClick(it)
         }
+    }
+
+    private fun onAlbumClick(album: Album) {
+        findNavController().navigate(
+            AlbumsFragmentDirections.actionAlbumsFragmentToPhotosFragment(album.id)
+        )
     }
 
     private fun initRecycler() {
@@ -63,7 +66,7 @@ class AlbumsFragment : Fragment() {
 
     private fun initObservers() {
         vmAlbums.albums.observe(viewLifecycleOwner) {
-            rvAdapter.setData(it)
+            rvAdapter.submitList(it)
         }
     }
 

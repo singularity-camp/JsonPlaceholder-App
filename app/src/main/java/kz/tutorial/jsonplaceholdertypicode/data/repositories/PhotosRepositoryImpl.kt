@@ -5,10 +5,6 @@ import kz.tutorial.jsonplaceholdertypicode.domain.models.Photo
 import kz.tutorial.jsonplaceholdertypicode.domain.repositories.PhotosRepository
 
 class PhotosRepositoryImpl(private val mainApi: MainApi) : PhotosRepository {
-    override suspend fun getCover(albumId: Int): Photo {
-        return mainApi.getAlbumCover(albumId)
-    }
-
     override suspend fun getPhotos(albumId: Int): List<Photo> {
         return mainApi.getAlbumPhotos(albumId)
     }
