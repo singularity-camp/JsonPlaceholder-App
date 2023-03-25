@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 
-class CommentsAdapter(private val layoutInflater: LayoutInflater) :
+class CommentsAdapter(private val layoutInflater: LayoutInflater, private val listener : (String) -> Unit) :
     RecyclerView.Adapter<CommentsViewHolder>() {
 
     private val comments: MutableList<Comment> = mutableListOf()
@@ -14,7 +14,7 @@ class CommentsAdapter(private val layoutInflater: LayoutInflater) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {
         val view = layoutInflater.inflate(R.layout.item_comment, parent, false)
 
-        return CommentsViewHolder(view)
+        return CommentsViewHolder(view, listener)
     }
 
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) {
