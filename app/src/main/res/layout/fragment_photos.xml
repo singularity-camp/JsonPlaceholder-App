@@ -48,7 +48,6 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/iv_photos_selector"
         app:layout_constraintBottom_toBottomOf="@id/photos_tv_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"

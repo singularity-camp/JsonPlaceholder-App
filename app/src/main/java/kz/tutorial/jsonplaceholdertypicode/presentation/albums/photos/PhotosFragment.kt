@@ -51,7 +51,10 @@ class PhotosFragment : Fragment() {
     }
 
     private fun initLayoutSelector() {
+        vmPhotos.changeSelectorBackground()
+
         ivSelector.setOnClickListener {
+            vmPhotos.changeSelectorBackground()
             vmPhotos.setLayoutManager(context)
         }
     }
@@ -80,6 +83,10 @@ class PhotosFragment : Fragment() {
 
         vmPhotos.rvLayoutState.observe(viewLifecycleOwner) {
             rvPhotos.layoutManager = it
+        }
+
+        vmPhotos.selectorBackground.observe(viewLifecycleOwner) {
+            ivSelector.setBackgroundResource(it)
         }
     }
 

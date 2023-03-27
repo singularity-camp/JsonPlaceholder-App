@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import kotlinx.coroutines.launch
+import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Photo
 import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetAlbumByIdUseCase
@@ -32,8 +33,23 @@ class PhotosViewModel(
     val rvLayoutState: LiveData<LayoutManager> = _rvLayoutState
     private var state = true
 
+    private val _selectorBackground = MutableLiveData<Int>()
+    val selectorBackground: LiveData<Int> = _selectorBackground
+    private val background = listOf(R.drawable.iv_list, R.drawable.iv_grid)
+    private var state2 = true
+
     init {
         getPhotos()
+    }
+
+    fun changeSelectorBackground() {
+        if (state2) {
+            _selectorBackground.value = background[0]
+            state2 = !state2
+        } else {
+            _selectorBackground.value = background[1]
+            state2 = !state2
+        }
     }
 
     fun setLayoutManager(context: Context?) {
