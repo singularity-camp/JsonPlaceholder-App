@@ -4,23 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class PhotosFragment : Fragment() {
     private val args: PhotosFragmentArgs by navArgs()
-    private val vmPhotos: PhotosViewModel by viewModel()
+    private val vmPhotos: PhotosViewModel by viewModel {
+        parametersOf(args.albumId)
+    }
 
     private lateinit var tvAlbumName: TextView
     private lateinit var tvUserName: TextView
-    private lateinit var ivSelector: ImageView
+    private lateinit var ivSelector: ImageButton
     private lateinit var rvPhotos: RecyclerView
     private lateinit var rvAdapter: PhotosAdapter
 
@@ -34,9 +37,9 @@ class PhotosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
+        initLayoutSelector()
         initAdapter()
         initRecycler()
-        initContent()
         initObservers()
     }
 
@@ -47,23 +50,26 @@ class PhotosFragment : Fragment() {
         rvPhotos = view.findViewById(R.id.photos_rv_photos)
     }
 
+    private fun initLayoutSelector() {
+        vmPhotos.changeSelectorBackground()
+
+        ivSelector.setOnClickListener {
+            vmPhotos.changeSelectorBackground()
+            vmPhotos.setLayoutManager(context)
+        }
+    }
+
     private fun initAdapter() {
         rvAdapter = PhotosAdapter(layoutInflater)
     }
 
     private fun initRecycler() {
-        val currentContext = context ?: return
-
         rvPhotos.adapter = rvAdapter
-        rvPhotos.layoutManager = LinearLayoutManager(currentContext)
+        vmPhotos.setLayoutManager(context)
 
         val spaceItemDecoration =
             SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
         rvPhotos.addItemDecoration(spaceItemDecoration)
-    }
-
-    private fun initContent() {
-        vmPhotos.getPhotos(args.albumId)
     }
 
     private fun initObservers() {
@@ -72,7 +78,20 @@ class PhotosFragment : Fragment() {
         }
 
         vmPhotos.album.observe(viewLifecycleOwner) {
-            tvAlbumName.text = it.title
+            onAlbumUpdated(it)
         }
+
+        vmPhotos.rvLayoutState.observe(viewLifecycleOwner) {
+            rvPhotos.layoutManager = it
+        }
+
+        vmPhotos.selectorBackground.observe(viewLifecycleOwner) {
+            ivSelector.setBackgroundResource(it)
+        }
+    }
+
+    private fun onAlbumUpdated(album: Album) {
+        tvAlbumName.text = album.title
+        tvUserName.text = album.username
     }
 }

@@ -8,7 +8,7 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
     override suspend fun getAlbums(): List<Album> {
         val remoteAlbums = mainApi.getRemoteAlbums()
         val users = mainApi.getUsers()
-        val photos = mainApi.getPhotos()
+        val photos = mainApi.getAllPhotos()
 
         val albums = remoteAlbums.map { remoteAlbum ->
             val user = users.find { user -> user.id == remoteAlbum.userId }
@@ -23,5 +23,18 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
         }
 
         return albums
+    }
+
+    override suspend fun getAlbumById(albumId: Int): Album {
+        val remoteAlbum = mainApi.getRemoteAlbumById(albumId)
+        val users = mainApi.getUsers()
+        val user = users.find { user -> user.id == remoteAlbum.userId }
+        return Album(
+            id = remoteAlbum.id,
+            userId = remoteAlbum.userId,
+            title = remoteAlbum.title,
+            username = user?.username ?: "",
+            thumbnailUrl = ""
+        )
     }
 }
