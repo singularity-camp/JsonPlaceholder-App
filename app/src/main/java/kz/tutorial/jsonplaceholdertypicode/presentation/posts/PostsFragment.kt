@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
@@ -13,15 +12,13 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class PostsFragment : Fragment() {
 
     private val vm: PostsViewModel by viewModel()
 
+    lateinit var rvPosts: RecyclerView
 
-    private lateinit var rvPosts: RecyclerView
-
-    private lateinit var adapter: PostAdapter
+    lateinit var adapter: PostAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +41,8 @@ class PostsFragment : Fragment() {
 
     private fun initAdapter() {
         adapter = PostAdapter(layoutInflater)
-        adapter.listener = ClickListener {post ->
-            findNavController().navigate(PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment(post.id))
+        adapter.listener = ClickListener {
+
         }
     }
 

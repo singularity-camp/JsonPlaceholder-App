@@ -8,36 +8,22 @@
     <fragment
         android:id="@+id/post_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment"
-        android:label="post_fragment"
-        tools:layout="@layout/fragment_posts">
-        <action
-            android:id="@+id/action_postsFragment_to_postDetailsFragment"
-            app:destination="@id/post_details_fragment" />
-    </fragment>
+        android:label=""
+        tools:layout="@layout/fragment_posts"/>
     <fragment
         android:id="@+id/album_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.album.AlbumFragment"
-        android:label="album_fragment"
+        android:label=""
         tools:layout="@layout/fragment_album" />
     <fragment
         android:id="@+id/user_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
-        android:label="user_fragment"
+        android:label=""
         tools:layout="@layout/fragment_users" />
     <fragment
         android:id="@+id/profile_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
-        android:label="profile_fragment"
+        android:label=""
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/post_details_fragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostDetailsFragment"
-        android:label="post_details_fragment"
-        tools:layout="@layout/fragment_post_details">
-        <argument
-            android:name="id"
-            android:defaultValue="1"
-            app:argType="integer" />
-    </fragment>
 
 </navigation>
