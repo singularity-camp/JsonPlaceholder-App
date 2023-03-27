@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/post_details_fragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostDetailsFragment"
         android:label="post_details_fragment"
         tools:layout="@layout/fragment_post_details">
         <argument
