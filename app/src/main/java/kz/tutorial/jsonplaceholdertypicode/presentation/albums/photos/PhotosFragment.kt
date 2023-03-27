@@ -70,9 +70,5 @@ class PhotosFragment : Fragment() {
         vmPhotos.photos.observe(viewLifecycleOwner) {
             rvAdapter.setData(it)
         }
-
-        vmPhotos.album.observe(viewLifecycleOwner) {
-            tvAlbumName.text = it.title
-        }
     }
 }

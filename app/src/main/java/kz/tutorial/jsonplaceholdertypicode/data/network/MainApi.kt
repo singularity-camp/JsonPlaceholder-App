@@ -27,7 +27,7 @@ interface MainApi {
     suspend fun getUsers(): List<User>
 
     @GET("photos")
-    suspend fun getPhotos(): List<Photo>
+    suspend fun getAllPhotos(): List<Photo>
 
     @GET("photos")
     suspend fun getAlbumPhotos(@Query("albumId") albumId: Int): List<Photo>
