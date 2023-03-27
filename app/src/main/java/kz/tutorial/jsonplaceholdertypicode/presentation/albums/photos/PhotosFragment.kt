@@ -11,12 +11,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.constants.POST_ID
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhotosFragment : Fragment() {
-    val args: PhotosFragmentArgs by navArgs()
+    private val args: PhotosFragmentArgs by navArgs()
     private val vmPhotos: PhotosViewModel by viewModel()
 
     private lateinit var tvAlbumName: TextView
@@ -24,7 +23,6 @@ class PhotosFragment : Fragment() {
     private lateinit var ivSelector: ImageView
     private lateinit var rvPhotos: RecyclerView
     private lateinit var rvAdapter: PhotosAdapter
-    private var postID: Int? = args.albumId
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,8 +63,7 @@ class PhotosFragment : Fragment() {
     }
 
     private fun initContent() {
-        postID = arguments?.getInt(POST_ID)
-        vmPhotos.getPhotos(postID)
+        vmPhotos.getPhotos(args.albumId)
     }
 
     private fun initObservers() {

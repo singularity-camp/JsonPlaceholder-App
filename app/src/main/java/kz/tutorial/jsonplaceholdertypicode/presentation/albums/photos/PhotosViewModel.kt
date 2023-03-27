@@ -16,10 +16,9 @@ class PhotosViewModel() : ViewModel() {
     val album: LiveData<Album> = _album
 
 
-    fun getPhotos(albumId: Int?) {
-        if (albumId != null) {
-            viewModelScope.launch {
-            }
+    fun getPhotos(albumId: Int) {
+        viewModelScope.launch {
+
         }
     }
 }

@@ -11,12 +11,14 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
         val photos = mainApi.getPhotos()
 
         val albums = remoteAlbums.map { remoteAlbum ->
+            val user = users.find { user -> user.id == remoteAlbum.userId }
+            val photo = photos.find { photo -> photo.albumId == remoteAlbum.id }
             Album(
                 id = remoteAlbum.id,
                 userId = remoteAlbum.userId,
                 title = remoteAlbum.title,
-                username = "A",
-                thumbnailUrl = "https://via.placeholder.com/150/92c952"
+                username = user?.username ?: "",
+                thumbnailUrl = photo?.thumbnailUrl ?: ""
             )
         }
 
