@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
     app:startDestination="@id/postsFragment">
     <fragment
@@ -20,8 +19,8 @@
 
         <argument
             android:name="postId"
-            app:argType="integer"
-            android:defaultValue="0"  />
+            android:defaultValue="0"
+            app:argType="integer" />
 
         <action
             android:id="@+id/action_postDetailsFragment_to_commentsFragment"
@@ -32,7 +31,11 @@
     <fragment
         android:id="@+id/albumsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
-        android:label="AlbumsFragment" />
+        android:label="AlbumsFragment">
+        <action
+            android:id="@+id/action_albumsFragment_to_photosFragment"
+            app:destination="@id/photosFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
@@ -48,10 +51,19 @@
 
         <argument
             android:name="postId"
-            app:argType="integer"
-            android:defaultValue="0"  />
+            android:defaultValue="0"
+            app:argType="integer" />
 
     </fragment>
 
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.photos.PhotosFragment"
+        android:label="UsersFragment">
+        <argument
+            android:name="albumId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

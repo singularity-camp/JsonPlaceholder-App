@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".presentation.MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/photos_tv_album_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Header1"
+        android:textColor="@color/text_01"
+        app:fontFamily="@font/open_sans_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        tools:text="@string/albums" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/photos_tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="@style/Button"
+        android:textColor="@color/main_01"
+        app:fontFamily="@font/open_sans_bold"
+        app:layout_constraintBottom_toTopOf="@id/photos_rv_photos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/photos_tv_album_name"
+        app:layout_constraintVertical_bias="0"
+        tools:text="@string/users" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/photos_iv_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/ui_01"
+        android:src="@drawable/iv_photos_selector"
+        app:layout_constraintBottom_toBottomOf="@id/photos_tv_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/photos_tv_username"
+        app:layout_constraintTop_toTopOf="@id/photos_tv_username" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photos_rv_photos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/photos_tv_username"
+        app:layout_constraintVertical_weight="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

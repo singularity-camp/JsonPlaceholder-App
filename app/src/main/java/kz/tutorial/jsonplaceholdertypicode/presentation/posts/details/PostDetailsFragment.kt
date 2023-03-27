@@ -63,7 +63,7 @@ class PostDetailsFragment : Fragment() {
         with(view) {
             tvAuthor = findViewById(R.id.tv_author)
             tvBody = findViewById(R.id.tv_body)
-            tvTitle = findViewById(R.id.tv_title)
+            tvTitle = findViewById(R.id.tv_album_title)
             tvShowAllComments = findViewById(R.id.tv_show_all)
             rvComments = findViewById(R.id.rv_comments)
         }
