@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.posts
+package kz.tutorial.jsonplaceholdertypicode.presentation.comments
 
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +38,13 @@ class CommentAdapter(private val inflater: LayoutInflater) :
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val tvName: TextView = itemView.findViewById(R.id.tv_comment_title)
+        private val tvEmail: TextView = itemView.findViewById(R.id.tv_email)
         private val tvBody: TextView = itemView.findViewById(R.id.tv_comment_body)
 
         fun bind(comment: Comment) {
             tvName.text = comment.name
             tvBody.text = comment.body
+            tvEmail.text = comment.email
 
             itemView.setOnClickListener {
                 listener?.onClick(comment)

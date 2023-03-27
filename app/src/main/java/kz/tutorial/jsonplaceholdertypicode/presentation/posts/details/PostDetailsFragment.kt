@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.posts
+package kz.tutorial.jsonplaceholdertypicode.presentation.posts.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentAdapter
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsFragmentArgs
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -71,7 +73,7 @@ class PostDetailsFragment : Fragment() {
     private fun initObservers() {
         vm.postDetailsLiveData.observe(viewLifecycleOwner) {
             postTitleTextView.text = it.title
-            postAuthorTextView.text = "Firstname Lastname"
+            postAuthorTextView.text = it.userId.toString()
             postContentTextView.text = it.body
         }
         vm.commentsLiveData.observe(viewLifecycleOwner) {

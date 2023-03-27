@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.posts.PostDetailsFragment">
+    tools:context=".presentation.posts.details.PostDetailsFragment">
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/Header1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="start"
+        android:textAppearance="@style/Header1"
         android:textColor="@color/text_01"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,11 +40,12 @@
             android:id="@+id/tv_author"
             style="@style/Header4"
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
-            android:text="Firstnamov Lastnamovich"
-            android:textColor="@color/main_01" />
+            android:textColor="@color/main_01"
+            tools:text="Firstnamov Lastnamovich" />
 
     </LinearLayout>
 
