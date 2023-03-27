@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
@@ -24,7 +23,7 @@ class PhotosFragment : Fragment() {
 
     private lateinit var tvAlbumName: TextView
     private lateinit var tvUserName: TextView
-    private lateinit var ivSelector: ImageView
+    private lateinit var ivSelector: ImageButton
     private lateinit var rvPhotos: RecyclerView
     private lateinit var rvAdapter: PhotosAdapter
 
@@ -38,6 +37,7 @@ class PhotosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
+        initLayoutSelector()
         initAdapter()
         initRecycler()
         initObservers()
@@ -50,15 +50,19 @@ class PhotosFragment : Fragment() {
         rvPhotos = view.findViewById(R.id.photos_rv_photos)
     }
 
+    private fun initLayoutSelector() {
+        ivSelector.setOnClickListener {
+            vmPhotos.setLayoutManager(context)
+        }
+    }
+
     private fun initAdapter() {
         rvAdapter = PhotosAdapter(layoutInflater)
     }
 
     private fun initRecycler() {
-        val currentContext = context ?: return
-
         rvPhotos.adapter = rvAdapter
-        rvPhotos.layoutManager = LinearLayoutManager(currentContext)
+        vmPhotos.setLayoutManager(context)
 
         val spaceItemDecoration =
             SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
@@ -72,6 +76,10 @@ class PhotosFragment : Fragment() {
 
         vmPhotos.album.observe(viewLifecycleOwner) {
             onAlbumUpdated(it)
+        }
+
+        vmPhotos.rvLayoutState.observe(viewLifecycleOwner) {
+            rvPhotos.layoutManager = it
         }
     }
 
