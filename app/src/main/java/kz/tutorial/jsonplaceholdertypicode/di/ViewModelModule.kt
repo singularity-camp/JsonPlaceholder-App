@@ -26,5 +26,11 @@ val viewModelModule = module {
         )
     }
     viewModel { AlbumsViewModel(get()) }
-    viewModel { PhotosViewModel(get()) }
+    viewModel { (albumId: Int) ->
+        PhotosViewModel(
+            albumId = albumId,
+            getPhotosUseCase = get(),
+            getAlbumByIdUseCase = get()
+        )
+    }
 }

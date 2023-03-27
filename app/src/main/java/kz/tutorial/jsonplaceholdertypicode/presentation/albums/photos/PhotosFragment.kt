@@ -11,12 +11,16 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class PhotosFragment : Fragment() {
     private val args: PhotosFragmentArgs by navArgs()
-    private val vmPhotos: PhotosViewModel by viewModel()
+    private val vmPhotos: PhotosViewModel by viewModel {
+        parametersOf(args.albumId)
+    }
 
     private lateinit var tvAlbumName: TextView
     private lateinit var tvUserName: TextView
@@ -36,7 +40,6 @@ class PhotosFragment : Fragment() {
         initViews(view)
         initAdapter()
         initRecycler()
-        initContent()
         initObservers()
     }
 
@@ -62,13 +65,18 @@ class PhotosFragment : Fragment() {
         rvPhotos.addItemDecoration(spaceItemDecoration)
     }
 
-    private fun initContent() {
-        vmPhotos.getPhotos(args.albumId)
-    }
-
     private fun initObservers() {
         vmPhotos.photos.observe(viewLifecycleOwner) {
             rvAdapter.setData(it)
         }
+
+        vmPhotos.album.observe(viewLifecycleOwner) {
+            onAlbumUpdated(it)
+        }
+    }
+
+    private fun onAlbumUpdated(album: Album) {
+        tvAlbumName.text = album.title
+        tvUserName.text = album.username
     }
 }

@@ -23,6 +23,9 @@ interface MainApi {
     @GET("albums")
     suspend fun getRemoteAlbums(): List<RemoteAlbum>
 
+    @GET("albums/{id}")
+    suspend fun getRemoteAlbumById(@Path("id") albumId: Int): RemoteAlbum
+
     @GET("users")
     suspend fun getUsers(): List<User>
 

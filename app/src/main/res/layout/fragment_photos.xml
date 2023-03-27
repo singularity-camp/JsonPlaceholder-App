@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".presentation.MainActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/photos_tv_album_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/Header1"
         android:textColor="@color/text_01"
         app:fontFamily="@font/open_sans_bold"
@@ -28,29 +30,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:textAppearance="@style/Button"
         android:textColor="@color/main_01"
         app:fontFamily="@font/open_sans_bold"
         app:layout_constraintBottom_toTopOf="@id/photos_rv_photos"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/photos_barrier"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/photos_tv_album_name"
         app:layout_constraintTop_toBottomOf="@id/photos_tv_album_name"
         app:layout_constraintVertical_bias="0"
         tools:text="@string/users" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/photos_iv_selector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/ui_01"
-        android:src="@drawable/iv_photos_selector"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/iv_photos_selector"
         app:layout_constraintBottom_toBottomOf="@id/photos_tv_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/photos_tv_username"
         app:layout_constraintTop_toTopOf="@id/photos_tv_username" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/photos_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="photos_iv_selector" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/photos_rv_photos"
