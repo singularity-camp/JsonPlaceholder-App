@@ -10,4 +10,17 @@
     <string name="email_w_colon">Email:</string>
 
     <string name="full_name">Full Name:</string>
+    <string name="phone">Phone:</string>
+    <string name="website">Website:</string>
+
+    <string name="company">Company</string>
+    <string name="company_name">Company Name:</string>
+    <string name="business_services">Business Services:</string>
+
+    <string name="address">Address</string>
+    <string name="street">Street:</string>
+    <string name="suite">Suite:</string>
+    <string name="city">City:</string>
+    <string name="zip_code">Zipcode:</string>
+    <string name="show_on_map">Show On Map</string>
 </resources>
