@@ -59,6 +59,8 @@ class UsersFragment : Fragment() {
     }
 
     private fun initObservers() {
-
+        vmUsers.usersShort.observe(viewLifecycleOwner) {
+            rvAdapter.submitList(it)
+        }
     }
 }
