@@ -1,9 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostByIdUseCase
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostCommentsUseCase
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetPostsUseCase
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetUserUseCase
+import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.*
 import org.koin.dsl.module
 
 val useCaseModule = module {
@@ -11,4 +8,5 @@ val useCaseModule = module {
     factory { GetPostByIdUseCase(get()) }
     factory { GetPostCommentsUseCase(get()) }
     factory { GetUserUseCase(get()) }
+    factory { GetAlbumsUseCase(get()) }
 }
