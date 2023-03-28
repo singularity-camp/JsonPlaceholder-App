@@ -5,9 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
+import kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragmentDirections
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,10 +47,21 @@ class UsersFragment : Fragment() {
 
     private fun initAdapter() {
         rvAdapter = UsersAdapter(layoutInflater = layoutInflater, onEmailClick = this::onEmailClick)
+        rvAdapter.onItemClicked = ClickListener { user ->
+            onUserClick(user)
+        }
     }
 
     private fun onEmailClick(email: String) {
         context?.startEmail(email)
+    }
+
+    private fun onUserClick(user: UserShort) {
+        findNavController().navigate(
+            UsersFragmentDirections.actionUsersFragmentToUserProfileFragment(
+                user.id
+            )
+        )
     }
 
     private fun setupRecyclerView() {
