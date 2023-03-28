@@ -8,6 +8,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startGeo
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startPhoneCall
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startWebsite
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -30,6 +34,8 @@ class UserProfileFragment : Fragment() {
     private lateinit var tvCity: TextView
     private lateinit var tvZipcode: TextView
     private lateinit var tvLocation: TextView
+    private lateinit var lat: String
+    private lateinit var lng: String
 
 
     override fun onCreateView(
@@ -43,6 +49,7 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
+        setupListeners()
         initObservers()
     }
 
@@ -64,6 +71,21 @@ class UserProfileFragment : Fragment() {
         }
     }
 
+    private fun setupListeners() {
+        tvEmail.setOnClickListener {
+            context?.startEmail(tvEmail.text.toString())
+        }
+        tvPhone.setOnClickListener {
+            context?.startPhoneCall(tvPhone.text.toString())
+        }
+        tvWebsite.setOnClickListener {
+            context?.startWebsite(tvWebsite.text.toString())
+        }
+        tvLocation.setOnClickListener {
+            context?.startGeo(lat, lng)
+        }
+    }
+
     private fun initObservers() {
         vmUserProfile.userProfile.observe(viewLifecycleOwner) {
             with(it) {
@@ -79,6 +101,8 @@ class UserProfileFragment : Fragment() {
                 tvSuite.text = address.suite
                 tvCity.text = address.city
                 tvZipcode.text = address.zipcode
+                lat = address.geo.lat
+                lng = address.geo.lng
             }
         }
     }
