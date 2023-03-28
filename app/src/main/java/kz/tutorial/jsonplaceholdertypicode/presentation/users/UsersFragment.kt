@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UsersFragment : Fragment() {
 
-    val vmUsers: UsersViewModel by viewModel()
+    private val vmUsers: UsersViewModel by viewModel()
 
     private lateinit var rvUsers: RecyclerView
     private lateinit var rvAdapter: UsersAdapter
