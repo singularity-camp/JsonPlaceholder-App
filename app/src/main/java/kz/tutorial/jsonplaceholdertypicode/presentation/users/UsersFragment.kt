@@ -9,9 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort
-import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragmentDirections
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail

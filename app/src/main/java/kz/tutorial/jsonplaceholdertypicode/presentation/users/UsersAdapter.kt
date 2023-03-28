@@ -23,7 +23,7 @@ class UsersAdapter(
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         val user = getItem(position)
         holder.bind(user)
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onItemClicked?.onClick(user)
         }
         holder.tvUserEmail.setOnClickListener { onEmailClick(user.email) }

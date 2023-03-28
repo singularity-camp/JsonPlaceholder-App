@@ -12,7 +12,7 @@ class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tvUserEmail: TextView = itemView.findViewById(R.id.item_user_tv_email)
 
     fun bind(user: UserShort) {
-        tvUserName.text = user.name
+        tvUserName.text = user.username
         tvUserFullName.text = user.name
         tvUserEmail.text = user.email
     }
