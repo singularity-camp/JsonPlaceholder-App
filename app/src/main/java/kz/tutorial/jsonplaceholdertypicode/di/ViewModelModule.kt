@@ -1,6 +1,5 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
-import kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort
 import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
@@ -9,7 +8,6 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.users.profile.UserProfileViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-
 
 val viewModelModule = module {
     viewModel { PostsViewModel(get()) }
@@ -33,9 +31,10 @@ val viewModelModule = module {
     viewModel {
         UsersViewModel(get())
     }
-    viewModel { (user: UserShort) ->
+    viewModel { (userId: Int, currentUserId: Int) ->
         UserProfileViewModel(
-            user = user,
+            userId = userId,
+            currentUserId = currentUserId,
             getUserUseCase = get()
         )
     }

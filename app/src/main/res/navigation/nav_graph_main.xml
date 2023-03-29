@@ -8,16 +8,20 @@
     <fragment
         android:id="@+id/postsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment"
-        android:label="PostsFragment">
+        android:label="PostsFragment"
+        tools:layout="@layout/fragment_posts">
+
         <action
             android:id="@+id/action_postsFragment_to_postDetailsFragment"
             app:destination="@id/postDetailsFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/postDetailsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsFragment"
-        android:label="PostDetailsFragment">
+        android:label="PostDetailsFragment"
+        tools:layout="@layout/fragment_post_details">
 
         <argument
             android:name="postId"
@@ -33,7 +37,8 @@
     <fragment
         android:id="@+id/albumsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
-        android:label="AlbumsFragment" />
+        android:label="AlbumsFragment"
+        tools:layout="@layout/fragment_albums" />
 
     <fragment
         android:id="@+id/profileFragment"
@@ -43,16 +48,20 @@
     <fragment
         android:id="@+id/usersFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
-        android:label="UsersFragment">
+        android:label="UsersFragment"
+        tools:layout="@layout/fragment_users">
+
         <action
             android:id="@+id/action_usersFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/commentsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsFragment"
-        android:label="CommentsFragment">
+        android:label="CommentsFragment"
+        tools:layout="@layout/fragment_comments">
 
         <argument
             android:name="postId"
@@ -68,9 +77,26 @@
         tools:layout="@layout/fragment_user_profile">
 
         <argument
-            android:name="userShort"
-            app:argType="kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort" />
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="integer" />
 
+        <action
+            android:id="@+id/action_userProfileFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.todo.ToDoFragment"
+        android:label="ToDoFragment"
+        tools:layout="@layout/fragment_todo">
+
+        <argument
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

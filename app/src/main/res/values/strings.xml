@@ -23,4 +23,7 @@
     <string name="city">City:</string>
     <string name="zip_code">Zipcode:</string>
     <string name="show_on_map">Show On Map</string>
+
+    <string name="my_todo">My ToDos</string>
+    <string name="your_todo">Your ToDos</string>
 </resources>
