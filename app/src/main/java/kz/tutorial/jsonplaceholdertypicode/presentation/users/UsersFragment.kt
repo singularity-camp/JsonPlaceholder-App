@@ -57,7 +57,7 @@ class UsersFragment : Fragment() {
     private fun onUserClick(user: UserShort) {
         findNavController().navigate(
             UsersFragmentDirections.actionUsersFragmentToUserProfileFragment(
-                user
+                user.id
             )
         )
     }

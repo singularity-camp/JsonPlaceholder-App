@@ -23,7 +23,7 @@ private const val CURRENT_USER_ID = 7
 class UserProfileFragment : Fragment() {
     private val args: UserProfileFragmentArgs by navArgs()
     private val vmUserProfile: UserProfileViewModel by viewModel {
-        parametersOf(args.userShort)
+        parametersOf(args.userId, CURRENT_USER_ID)
     }
     private lateinit var tvUserName: TextView
     private lateinit var tvEmail: TextView
@@ -53,7 +53,6 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
-        setupStartContent()
         initObservers()
         setupListeners()
     }
@@ -77,15 +76,12 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    private fun setupStartContent() {
-        tvUserName.text = args.userShort.username
-        tvEmail.text = args.userShort.email
-        tvFullName.text = args.userShort.name
-    }
-
     private fun initObservers() {
         vmUserProfile.userProfile.observe(viewLifecycleOwner) {
             with(it) {
+                tvUserName.text = username
+                tvEmail.text = email
+                tvFullName.text = name
                 tvPhone.text = phone
                 tvWebsite.text = website
                 tvCompanyName.text = company.name
@@ -100,7 +96,7 @@ class UserProfileFragment : Fragment() {
             }
         }
 
-        vmUserProfile.userID.observe(viewLifecycleOwner) {
+        vmUserProfile.currentUserID.observe(viewLifecycleOwner) {
             if (it == CURRENT_USER_ID) {
                 cvTodo.isVisible = true
             }
@@ -123,7 +119,7 @@ class UserProfileFragment : Fragment() {
         cvTodo.setOnClickListener {
             findNavController().navigate(
                 UserProfileFragmentDirections.actionUserProfileFragmentToToDoFragment(
-                    args.userShort.id
+                    args.userId
                 )
             )
         }

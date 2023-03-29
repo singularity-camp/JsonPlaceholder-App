@@ -77,8 +77,9 @@
         tools:layout="@layout/fragment_user_profile">
 
         <argument
-            android:name="userShort"
-            app:argType="kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort" />
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="integer" />
 
         <action
             android:id="@+id/action_userProfileFragment_to_toDoFragment"
