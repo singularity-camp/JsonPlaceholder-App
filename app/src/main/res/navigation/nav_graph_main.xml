@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/usersFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
-        android:label="UsersFragment" >
+        android:label="UsersFragment">
         <action
             android:id="@+id/action_usersFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
@@ -68,9 +68,9 @@
         tools:layout="@layout/fragment_user_profile">
 
         <argument
-            android:name="userId"
-            android:defaultValue="0"
-            app:argType="integer" />
+            android:name="userShort"
+            app:argType="kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort" />
+
     </fragment>
 
 </navigation>

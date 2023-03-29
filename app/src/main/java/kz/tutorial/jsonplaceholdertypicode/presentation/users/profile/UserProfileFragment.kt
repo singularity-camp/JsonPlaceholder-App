@@ -18,9 +18,8 @@ import org.koin.core.parameter.parametersOf
 class UserProfileFragment : Fragment() {
     private val args: UserProfileFragmentArgs by navArgs()
     private val vmUserProfile: UserProfileViewModel by viewModel {
-        parametersOf(args.userId)
+        parametersOf(args.userShort)
     }
-
     private lateinit var tvUserName: TextView
     private lateinit var tvEmail: TextView
     private lateinit var tvFullName: TextView
@@ -37,7 +36,6 @@ class UserProfileFragment : Fragment() {
     private lateinit var lat: String
     private lateinit var lng: String
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,8 +47,9 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
-        setupListeners()
+        setupStartContent()
         initObservers()
+        setupListeners()
     }
 
     private fun initViews(view: View) {
@@ -71,27 +70,15 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    private fun setupListeners() {
-        tvEmail.setOnClickListener {
-            context?.startEmail(tvEmail.text.toString())
-        }
-        tvPhone.setOnClickListener {
-            context?.startPhoneCall(tvPhone.text.toString())
-        }
-        tvWebsite.setOnClickListener {
-            context?.startWebsite(tvWebsite.text.toString())
-        }
-        tvLocation.setOnClickListener {
-            context?.startGeo(lat, lng)
-        }
+    private fun setupStartContent() {
+        tvUserName.text = args.userShort.username
+        tvEmail.text = args.userShort.email
+        tvFullName.text = args.userShort.name
     }
 
     private fun initObservers() {
         vmUserProfile.userProfile.observe(viewLifecycleOwner) {
             with(it) {
-                tvUserName.text = username
-                tvEmail.text = email
-                tvFullName.text = name
                 tvPhone.text = phone
                 tvWebsite.text = website
                 tvCompanyName.text = company.name
@@ -104,6 +91,21 @@ class UserProfileFragment : Fragment() {
                 lat = address.geo.lat
                 lng = address.geo.lng
             }
+        }
+    }
+
+    private fun setupListeners() {
+        tvEmail.setOnClickListener {
+            context?.startEmail(tvEmail.text.toString())
+        }
+        tvPhone.setOnClickListener {
+            context?.startPhoneCall(tvPhone.text.toString())
+        }
+        tvWebsite.setOnClickListener {
+            context?.startWebsite(tvWebsite.text.toString())
+        }
+        tvLocation.setOnClickListener {
+            context?.startGeo(lat, lng)
         }
     }
 }

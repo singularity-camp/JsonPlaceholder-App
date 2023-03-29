@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort
 import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetUserUseCase
 
-class UserProfileViewModel(private val userId: Int, private val getUserUseCase: GetUserUseCase) :
+class UserProfileViewModel(private val user: UserShort, private val getUserUseCase: GetUserUseCase) :
     ViewModel() {
     private val _userProfile = MutableLiveData<User>()
     val userProfile: LiveData<User> = _userProfile
@@ -19,7 +20,7 @@ class UserProfileViewModel(private val userId: Int, private val getUserUseCase: 
 
     private fun getUserProfile() {
         viewModelScope.launch {
-            val user = getUserUseCase(userId)
+            val user = getUserUseCase(userId = user.id)
             _userProfile.postValue(user)
         }
     }

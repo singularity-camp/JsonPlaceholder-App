@@ -1,5 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
+import kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort
 import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
@@ -32,9 +33,9 @@ val viewModelModule = module {
     viewModel {
         UsersViewModel(get())
     }
-    viewModel { (userId: Int) ->
+    viewModel { (user: UserShort) ->
         UserProfileViewModel(
-            userId = userId,
+            user = user,
             getUserUseCase = get()
         )
     }
