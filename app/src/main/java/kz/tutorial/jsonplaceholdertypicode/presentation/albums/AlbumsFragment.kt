@@ -11,6 +11,7 @@ import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class AlbumsFragment : Fragment() {
 
     private val vm: AlbumsViewmodel by viewModel()
@@ -82,7 +83,7 @@ class AlbumsFragment : Fragment() {
 
     private fun initObservers() {
         vm.albumsLiveData.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+            adapter.submitList(it)
         }
     }
 

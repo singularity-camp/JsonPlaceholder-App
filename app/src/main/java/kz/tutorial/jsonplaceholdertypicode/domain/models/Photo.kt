@@ -1,13 +1,13 @@
 package kz.tutorial.jsonplaceholdertypicode.domain.models
 
-import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 
 @Parcelize
-data class Album(
+data class Photo(
+    val albumId: Int,
     val id: Int,
-    var previewPhoto: String,
+    val thumbnailUrl: String,
     val title: String,
-    val userId: Int,
-    var username: String
+    val url: String
 ) : Parcelable

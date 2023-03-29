@@ -6,17 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
-import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 
 class AlbumAdapter(private val layoutInflater: LayoutInflater, private val context: Context) :
-    RecyclerView.Adapter<AlbumViewHolder>() {
-
-    private val albums: MutableList<Album> = mutableListOf()
+    androidx.recyclerview.widget.ListAdapter<Album, AlbumViewHolder>(DIFF_CALLBACK()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val view = layoutInflater.inflate(R.layout.item_album, parent, false)
@@ -24,20 +21,10 @@ class AlbumAdapter(private val layoutInflater: LayoutInflater, private val conte
         return AlbumViewHolder(view, context)
     }
 
-    override fun getItemCount(): Int {
-        return albums.size
-    }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val album = albums[position]
-        holder.bind(album, )
-    }
-
-    fun setData(newData: List<Album>) {
-        notifyItemRangeRemoved(0, albums.size)
-        albums.clear()
-        albums.addAll(newData)
-        notifyItemRangeInserted(0, albums.size)
+        val album = getItem(position)
+        holder.bind(album)
     }
 }
 
@@ -47,13 +34,22 @@ class AlbumViewHolder(itemView: View, val context: Context) : ViewHolder(itemVie
     private var tvUsername: TextView = itemView.findViewById(R.id.tv_username)
 
     fun bind(album: Album) {
-        ivAlbumCover.setImageDrawable(
-            AppCompatResources.getDrawable(
-                context,
-                R.drawable.album_default_cover
-            )
-        )
+        Glide.with(ivAlbumCover)
+            .load(album.previewPhoto)
+            .into(ivAlbumCover)
+
         tvAlbumTitle.text = album.title
-        tvUsername.setText("Username")
+        tvUsername.text = album.username
     }
+}
+
+private class DIFF_CALLBACK : DiffUtil.ItemCallback<Album>() {
+    override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
+        return oldItem == newItem
+    }
+
 }
