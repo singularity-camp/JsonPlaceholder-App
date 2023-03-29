@@ -119,7 +119,7 @@ class UserProfileFragment : Fragment() {
         cvTodo.setOnClickListener {
             findNavController().navigate(
                 UserProfileFragmentDirections.actionUserProfileFragmentToToDoFragment(
-                    args.userId
+                    CURRENT_USER_ID
                 )
             )
         }
