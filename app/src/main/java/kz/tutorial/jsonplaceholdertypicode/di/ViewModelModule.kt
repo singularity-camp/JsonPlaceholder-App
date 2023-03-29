@@ -4,6 +4,7 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsViewModel
+import kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -26,5 +27,8 @@ val viewModelModule = module {
     }
     viewModel {
         AlbumsViewModel(get())
+    }
+    viewModel {
+        UsersViewModel(get())
     }
 }
