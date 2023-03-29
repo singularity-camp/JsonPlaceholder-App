@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
@@ -14,6 +17,8 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startPh
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startWebsite
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+
+private const val CURRENT_USER_ID = 7
 
 class UserProfileFragment : Fragment() {
     private val args: UserProfileFragmentArgs by navArgs()
@@ -35,6 +40,7 @@ class UserProfileFragment : Fragment() {
     private lateinit var tvLocation: TextView
     private lateinit var lat: String
     private lateinit var lng: String
+    private lateinit var cvTodo: CardView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,6 +73,7 @@ class UserProfileFragment : Fragment() {
             tvCity = findViewById(R.id.cv_user_address_tv_city)
             tvZipcode = findViewById(R.id.cv_user_address_tv_zip_code)
             tvLocation = findViewById(R.id.cv_user_address_tv_location)
+            cvTodo = findViewById(R.id.cv_user_todo)
         }
     }
 
@@ -92,6 +99,12 @@ class UserProfileFragment : Fragment() {
                 lng = address.geo.lng
             }
         }
+
+        vmUserProfile.userID.observe(viewLifecycleOwner) {
+            if (it == CURRENT_USER_ID) {
+                cvTodo.isVisible = true
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -106,6 +119,13 @@ class UserProfileFragment : Fragment() {
         }
         tvLocation.setOnClickListener {
             context?.startGeo(lat, lng)
+        }
+        cvTodo.setOnClickListener {
+            findNavController().navigate(
+                UserProfileFragmentDirections.actionUserProfileFragmentToToDoFragment(
+                    args.userShort.id
+                )
+            )
         }
     }
 }
