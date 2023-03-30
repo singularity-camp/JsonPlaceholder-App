@@ -1,42 +1,41 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.posts
+package kz.tutorial.jsonplaceholdertypicode.presentation.comments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.CommentAdapter
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-class PostDetailsFragment : Fragment() {
-    private val vm: PostDetailsViewModel by viewModel()
-    val args: PostDetailsFragmentArgs by navArgs()
+class PostCommentsFragment : Fragment() {
 
-    private lateinit var postTitleTextView: TextView
-    private lateinit var postAuthorTextView: TextView
-    private lateinit var postContentTextView: TextView
+    private val args: PostCommentsFragmentArgs by navArgs()
+    private val vm: PostCommentsViewModel by viewModel{
+        parametersOf(args.postId)
+    }
 
-    private lateinit var commentsRecyclerView: RecyclerView
+    private lateinit var rvComments: RecyclerView
     private lateinit var adapter: CommentAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_post_details, container, false)
+        vm
+        return inflater.inflate(R.layout.fragment_post_comments, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val thisId = args.id
-        vm.id = thisId
-
         initViews(view)
         initAdapter()
         initRecycler()
@@ -44,10 +43,9 @@ class PostDetailsFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        postTitleTextView = view.findViewById(R.id.tv_title)
-        postAuthorTextView = view.findViewById(R.id.tv_author)
-        postContentTextView = view.findViewById(R.id.tv_content)
-        commentsRecyclerView = view.findViewById(R.id.rv_five_comments)
+        with(view) {
+            rvComments = findViewById(R.id.rv_comments)
+        }
     }
 
     private fun initAdapter() {
@@ -60,22 +58,19 @@ class PostDetailsFragment : Fragment() {
     private fun initRecycler() {
         val currentContext = context ?: return
 
-        commentsRecyclerView.adapter = adapter
-        commentsRecyclerView.layoutManager = LinearLayoutManager(currentContext)
+        rvComments.adapter = adapter
+        rvComments.layoutManager = LinearLayoutManager(currentContext)
 
         val spaceItemDecoration =
             SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
-        commentsRecyclerView.addItemDecoration(spaceItemDecoration)
+        rvComments.addItemDecoration(spaceItemDecoration)
     }
 
     private fun initObservers() {
-        vm.postDetailsLiveData.observe(viewLifecycleOwner) {
-            postTitleTextView.text = it.title
-            postAuthorTextView.text = "Firstname Lastname"
-            postContentTextView.text = it.body
-        }
         vm.commentsLiveData.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
     }
+
+
 }

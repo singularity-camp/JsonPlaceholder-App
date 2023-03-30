@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.domain.Comment
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 
 class CommentAdapter(private val inflater: LayoutInflater) :

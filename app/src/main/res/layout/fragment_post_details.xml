@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.posts.PostDetailsFragment">
+    tools:context=".presentation.posts.details.PostDetailsFragment">
 
     <TextView
         android:id="@+id/tv_title"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_content" />
 
     <TextView
-        android:id="@+id/tv_comments"
+        android:id="@+id/tv_five_comments"
         style="@style/Header3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,13 +78,14 @@
         app:layout_constraintTop_toBottomOf="@id/view" />
 
     <TextView
+        android:id="@+id/show_all"
         style="@style/Header4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:text="@string/show_all"
         android:textColor="@color/links"
-        app:layout_constraintBottom_toBottomOf="@id/tv_comments"
+        app:layout_constraintBottom_toBottomOf="@id/tv_five_comments"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -93,6 +94,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_comments" />
+        app:layout_constraintTop_toBottomOf="@id/tv_five_comments" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

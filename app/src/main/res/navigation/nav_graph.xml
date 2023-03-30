@@ -14,29 +14,45 @@
             android:id="@+id/action_postsFragment_to_postDetailsFragment"
             app:destination="@id/post_details_fragment" />
     </fragment>
+
     <fragment
         android:id="@+id/album_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.album.AlbumFragment"
         android:label="album_fragment"
         tools:layout="@layout/fragment_album" />
+
     <fragment
         android:id="@+id/user_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
         android:label="user_fragment"
         tools:layout="@layout/fragment_users" />
+
     <fragment
         android:id="@+id/profile_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/fragment_profile" />
+
     <fragment
         android:id="@+id/post_details_fragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostDetailsFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsFragment"
         android:label="post_details_fragment"
         tools:layout="@layout/fragment_post_details">
         <argument
-            android:name="id"
-            android:defaultValue="1"
+            android:name="postId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_postDetailsFragment_to_postCommentsFragment"
+            app:destination="@id/post_comments_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/post_comments_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.comments.PostCommentsFragment"
+        android:label="post_comments_fragment"
+        tools:layout="@layout/fragment_post_comments">
+        <argument
+            android:name="postId"
             app:argType="integer" />
     </fragment>
 
