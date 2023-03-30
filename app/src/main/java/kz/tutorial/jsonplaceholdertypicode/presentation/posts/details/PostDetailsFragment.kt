@@ -1,6 +1,8 @@
 package kz.tutorial.jsonplaceholdertypicode.presentation.posts.details
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.CommentAdapter
-import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -23,13 +24,14 @@ class PostDetailsFragment : Fragment() {
     private lateinit var postAuthorTextView: TextView
     private lateinit var postContentTextView: TextView
     private lateinit var postShowAllTextView: TextView
+    private lateinit var commentsRecyclerView: RecyclerView
 
     private val args: PostDetailsFragmentArgs by navArgs()
     private val vm: PostDetailsViewModel by viewModel {
         parametersOf(args.postId)
     }
 
-    private lateinit var commentsRecyclerView: RecyclerView
+
     private lateinit var adapter: CommentAdapter
 
     override fun onCreateView(
@@ -58,6 +60,7 @@ class PostDetailsFragment : Fragment() {
 
 
         postShowAllTextView.setOnClickListener {
+            Log.i(TAG, args.postId.toString())
             findNavController().navigate(
                 PostDetailsFragmentDirections.actionPostDetailsFragmentToPostCommentsFragment(args.postId)
             )
@@ -66,12 +69,11 @@ class PostDetailsFragment : Fragment() {
 
     private fun initAdapter() {
         adapter = CommentAdapter(layoutInflater)
-        adapter.listener = ClickListener {}
     }
 
     private fun initRecycler() {
         commentsRecyclerView.adapter = adapter
-        commentsRecyclerView.layoutManager = LinearLayoutManager(context)
+        commentsRecyclerView.layoutManager = LinearLayoutManager(context ?: return)
 
         val spaceItemDecoration =
             SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)

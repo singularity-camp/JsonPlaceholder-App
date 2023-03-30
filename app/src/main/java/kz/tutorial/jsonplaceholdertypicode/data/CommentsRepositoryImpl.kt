@@ -6,6 +6,6 @@ import kz.tutorial.jsonplaceholdertypicode.domain.repositories.CommentsRepositor
 
 class CommentsRepositoryImpl(private val mainApi: MainApi) : CommentsRepository {
     override suspend fun getComments(postId: Int): List<Comment> {
-        return mainApi.getComments(postId = postId.toString())
+        return mainApi.getComments(postId = postId)
     }
 }

@@ -1,6 +1,8 @@
 package kz.tutorial.jsonplaceholdertypicode.presentation.comments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,6 +70,7 @@ class PostCommentsFragment : Fragment() {
 
     private fun initObservers() {
         vm.commentsLiveData.observe(viewLifecycleOwner) {
+            Log.i(TAG, it.size.toString())
             adapter.setData(it)
         }
     }
