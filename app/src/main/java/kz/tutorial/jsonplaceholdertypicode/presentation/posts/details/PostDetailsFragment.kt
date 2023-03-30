@@ -22,13 +22,15 @@ import org.koin.core.parameter.parametersOf
 
 class PostDetailsFragment : Fragment() {
 
-    lateinit var tvAuthor: TextView
-    lateinit var tvTitle: TextView
-    lateinit var tvBody: TextView
-    lateinit var tvShowAllComments: TextView
-    lateinit var rvComments: RecyclerView
+    private lateinit var tvAuthor: TextView
+    private lateinit var tvTitle: TextView
+    private lateinit var tvBody: TextView
+    private lateinit var tvShowAllComments: TextView
+    private lateinit var rvComments: RecyclerView
+    private lateinit var adapter: CommentsAdapter
+    private var userId = 0
 
-    val args: PostDetailsFragmentArgs by navArgs()
+    private val args: PostDetailsFragmentArgs by navArgs()
     val viewModel: PostDetailsViewModel by viewModel {
         //Передаем пост айди во вьюмодел. Настроили передачу параметра в di.viewModelModule
 
@@ -37,7 +39,6 @@ class PostDetailsFragment : Fragment() {
         parametersOf(args.postId)
     }
 
-    lateinit var adapter: CommentsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +55,7 @@ class PostDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
+        setupListeners()
         initAdapter()
         setupRecyclerView()
         initObservers()
@@ -67,17 +69,31 @@ class PostDetailsFragment : Fragment() {
             tvShowAllComments = findViewById(R.id.tv_show_all)
             rvComments = findViewById(R.id.rv_comments)
         }
+    }
+
+    private fun setupListeners() {
+        tvAuthor.setOnClickListener {
+            findNavController().navigate(
+                PostDetailsFragmentDirections.actionPostDetailsFragmentToUserProfileFragment(
+                    userId
+                )
+            )
+        }
 
         tvShowAllComments.setOnClickListener {
-            findNavController().navigate(PostDetailsFragmentDirections.actionPostDetailsFragmentToCommentsFragment(args.postId))
+            findNavController().navigate(
+                PostDetailsFragmentDirections.actionPostDetailsFragmentToCommentsFragment(
+                    args.postId
+                )
+            )
         }
     }
 
     private fun initAdapter() {
         adapter = CommentsAdapter(
-                layoutInflater = layoutInflater,
-                onEmailClick = this::onEmailClick
-            )
+            layoutInflater = layoutInflater,
+            onEmailClick = this::onEmailClick
+        )
     }
 
     private fun onEmailClick(email: String) {
@@ -108,9 +124,11 @@ class PostDetailsFragment : Fragment() {
 
     private fun onAuthorUpdated(author: User) {
         tvAuthor.text = author.name
+        userId = author.id
     }
 
     private fun onCommentsUpdated(comments: List<Comment>) {
         adapter.submitList(comments)
     }
+
 }

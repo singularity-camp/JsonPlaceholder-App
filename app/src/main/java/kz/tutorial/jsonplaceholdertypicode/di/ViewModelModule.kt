@@ -1,11 +1,13 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
 import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsViewModel
+import kz.tutorial.jsonplaceholdertypicode.presentation.albums.photos.PhotosViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.users.profile.UserProfileViewModel
+import kz.tutorial.jsonplaceholdertypicode.presentation.users.todo.ToDoViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -36,6 +38,16 @@ val viewModelModule = module {
             userId = userId,
             currentUserId = currentUserId,
             getUserUseCase = get()
+        )
+    }
+    viewModel { (userId: Int) ->
+        ToDoViewModel(userId = userId, getToDoListUseCase = get())
+    }
+    viewModel { (albumId: Int) ->
+        PhotosViewModel(
+            albumId = albumId,
+            getPhotosUseCase = get(),
+            getAlbumByIdUseCase = get()
         )
     }
 }
