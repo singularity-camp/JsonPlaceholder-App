@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
@@ -16,9 +17,9 @@ class AlbumsFragment : Fragment() {
 
     val viewModel: AlbumsViewModel by viewModel()
 
-    lateinit var rvAlbums: RecyclerView
+    private lateinit var rvAlbums: RecyclerView
 
-    lateinit var adapter: AlbumsAdapter
+    private lateinit var adapter: AlbumsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -79,11 +80,19 @@ class AlbumsFragment : Fragment() {
     }
 
     private fun onAlbumClick(albumId: Int) {
-
+        findNavController().navigate(
+            AlbumsFragmentDirections.actionAlbumsFragmentToPhotosFragment(
+                albumId
+            )
+        )
     }
 
     private fun onUserClick(userId: Int) {
-
+        findNavController().navigate(
+            AlbumsFragmentDirections.actionAlbumsFragmentToUserProfileFragment(
+                userId
+            )
+        )
     }
 
     private fun setupRecyclerView() {

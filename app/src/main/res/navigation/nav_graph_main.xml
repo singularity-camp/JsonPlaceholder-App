@@ -32,13 +32,27 @@
             android:id="@+id/action_postDetailsFragment_to_commentsFragment"
             app:destination="@id/commentsFragment" />
 
+        <action
+            android:id="@+id/action_postDetailsFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/albumsFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
         android:label="AlbumsFragment"
-        tools:layout="@layout/fragment_albums" />
+        tools:layout="@layout/fragment_albums">
+
+        <action
+            android:id="@+id/action_albumsFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+
+        <action
+            android:id="@+id/action_albumsFragment_to_photosFragment"
+            app:destination="@id/photosFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -97,6 +111,24 @@
             android:name="userId"
             android:defaultValue="0"
             app:argType="integer" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.photos.PhotosFragment"
+        android:label="UsersFragment"
+        tools:layout="@layout/fragment_photos">
+
+        <argument
+            android:name="albumId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_photosFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+
     </fragment>
 
 </navigation>
