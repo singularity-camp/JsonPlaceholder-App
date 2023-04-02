@@ -3,6 +3,7 @@ package kz.tutorial.jsonplaceholdertypicode.data.repositories
 import kz.tutorial.jsonplaceholdertypicode.data.mappers.toAlbum
 import kz.tutorial.jsonplaceholdertypicode.data.network.MainApi
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Album
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Photo
 import kz.tutorial.jsonplaceholdertypicode.domain.repositories.AlbumsRepository
 
 class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
@@ -17,5 +18,10 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
         }
 
         return albums
+    }
+
+    override suspend fun getAlbumPhotos(albumId: Int): List<Photo> {
+        val albumPhotos = mainApi.getAlbumPhotos(albumId)
+        return albumPhotos
     }
 }

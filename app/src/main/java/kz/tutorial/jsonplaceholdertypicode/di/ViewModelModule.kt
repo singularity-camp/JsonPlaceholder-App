@@ -1,5 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.di
 
+import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumPhotosViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsViewmodel
 import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
@@ -25,4 +26,10 @@ val viewModelModule = module {
         )
     }
     viewModel { AlbumsViewmodel(get()) }
+
+    viewModel { (albumId : Int) ->
+        AlbumPhotosViewModel(
+            albumId = albumId,
+            getAlbumPhotosUseCase = get()
+        ) }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
@@ -26,31 +27,6 @@ class AlbumsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_albums, container, false)
-
-        /*TODO: Вам нужно скачать список альбомов и показать его.
-        Для упрощения задачи можете пока не показывать пользователя которому принадлежит
-
-        Для решения этого вам надо добавить соответствующий запрос в MainApi
-        Затем Создайте AlbumRepository и AlbumRepositoryImpl
-        После этого Добавьте GetAlbumsUseCase
-        Затем уже создайте AlbumsViewModel
-        После этого добавьте инструкции в di. Сначала RepositoryModule
-        (не забудьте, что вам нужно вернуть AlbumsRepository создав Albums RepositoryImpl)
-        Затем создайте инструкции для UseCaseModule и ViewModelModule
-
-        Затем можете засетапить либо AlbumsViewModel и написать логику его работы),
-        либо создать UI (Layout, Fragment) и только потом ViewModel)
-
-
-        После того как вы всё это выполните, можете добавить пользователя
-        Для этого создайте дата класс AlbumsWithUser где будут лежать нужные поля
-        Чтобы не сильно усложнять логику пропищите в GetAlbumsWithUserUseCase
-        в ней запускайте запрос на альбомы, потом запрос на всех пользователей
-        и используя два списка, создайте список объектов AlbumsWithUser
-        (для каждого альбома ищете пользователя во втором списке
-        и на основе этих двух элементов создаете нужный вам объект и добавляете в свой новый список)
-        Далее обновляете ваш адаптер чтобы он принимал AlbumsWithUser, ну и пару других классов тоже)
-        */
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,10 +41,20 @@ class AlbumsFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = AlbumAdapter(layoutInflater, requireContext())
-//        adapter.listener = ClickListener { album ->
-//            onAlbumClick(album)
-//        }
+        adapter = AlbumAdapter(layoutInflater,
+        onAlbumClick = this::onAlbumClick,
+        onUserClick = this::onUserClick,
+        )
+    }
+
+    private fun onAlbumClick(albumId: Int) {
+        findNavController().navigate(
+            AlbumsFragmentDirections.actionAlbumsFragmentToAlbumPhotosFragment(albumId = albumId)
+        )
+    }
+
+    private fun onUserClick(userId: Int) {
+        ///
     }
     private fun initRecycler() {
         val currentContext = context ?: return
