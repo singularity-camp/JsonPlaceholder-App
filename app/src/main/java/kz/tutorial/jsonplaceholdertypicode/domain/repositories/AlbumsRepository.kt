@@ -7,4 +7,6 @@ interface AlbumsRepository {
     suspend fun getAlbums() : List<Album>
 
     suspend fun getAlbumPhotos(albumId: Int) : List<Photo>
+
+    suspend fun getAlbumById(albumId: Int) : Album
 }

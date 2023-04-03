@@ -24,4 +24,17 @@ class AlbumsRepositoryImpl(private val mainApi: MainApi) : AlbumsRepository {
         val albumPhotos = mainApi.getAlbumPhotos(albumId)
         return albumPhotos
     }
+
+    override suspend fun getAlbumById(albumId: Int): Album {
+        val remoteAlbum = mainApi.getAlbumById(albumId)
+        val users = mainApi.getUsers()
+        val user = users.find { user -> user.id == remoteAlbum.userId }
+        return Album(
+            id = remoteAlbum.id,
+            previewPhoto = "",
+            userId = remoteAlbum.userId,
+            title = remoteAlbum.title,
+            username = user?.username ?: ""
+        )
+    }
 }
