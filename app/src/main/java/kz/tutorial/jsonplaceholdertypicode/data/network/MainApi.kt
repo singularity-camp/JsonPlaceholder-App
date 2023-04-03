@@ -1,8 +1,7 @@
 package kz.tutorial.jsonplaceholdertypicode.data.network
 
-import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
-import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
-import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kz.tutorial.jsonplaceholdertypicode.data.models.RemoteAlbum
+import kz.tutorial.jsonplaceholdertypicode.domain.models.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -19,8 +18,22 @@ interface MainApi {
     //но поскольку апишка у нас небольшая, мы можем всё писать здесь
     @GET("comments")
     suspend fun getPostComments(@Query("postId") postId: Int): List<Comment>
+    @GET("users")
+    suspend fun getUsers(): List<User>
 
     @GET("users/{id}")
     suspend fun getUser(@Path("id") userId: Int): User
+
+    @GET("albums")
+    suspend fun getAlbums() : List<RemoteAlbum>
+
+    @GET("albums/{id}")
+    suspend fun getAlbumById(@Path("id") albumId: Int): RemoteAlbum
+
+    @GET("photos")
+    suspend fun getAlbumPhotos(@Query("albumId") albumId : Int) : List<Photo>
+
+    @GET("photos")
+    suspend fun getAllPhotos() : List<Photo>
 
 }
