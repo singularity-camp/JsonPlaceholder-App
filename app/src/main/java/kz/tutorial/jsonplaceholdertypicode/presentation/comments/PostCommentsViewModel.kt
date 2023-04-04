@@ -14,8 +14,8 @@ class PostCommentsViewModel(
 ) : ViewModel() {
 
 
-    private val _commentsLiveData: MutableLiveData<List<Comment>> = MutableLiveData()
-    val commentsLiveData: LiveData<List<Comment>> = _commentsLiveData
+    private val _comments = MutableLiveData<List<Comment>>()
+    val comments: LiveData<List<Comment>> = _comments
 
     init {
         getComments()
@@ -23,8 +23,8 @@ class PostCommentsViewModel(
 
     private fun getComments() {
         viewModelScope.launch {
-            val comments = getCommentsUseCase(postId)
-            _commentsLiveData.postValue(comments)
+            val commentsList = getCommentsUseCase(postId)
+            _comments.postValue(commentsList)
         }
     }
 }

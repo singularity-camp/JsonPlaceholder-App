@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/post_fragment">
+    app:startDestination="@id/posts_fragment">
 
     <fragment
-        android:id="@+id/post_fragment"
+        android:id="@+id/posts_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment"
         android:label="post_fragment"
         tools:layout="@layout/fragment_posts">
@@ -14,24 +14,6 @@
             android:id="@+id/action_postsFragment_to_postDetailsFragment"
             app:destination="@id/post_details_fragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/album_fragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.album.AlbumFragment"
-        android:label="album_fragment"
-        tools:layout="@layout/fragment_album" />
-
-    <fragment
-        android:id="@+id/user_fragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
-        android:label="user_fragment"
-        tools:layout="@layout/fragment_users" />
-
-    <fragment
-        android:id="@+id/profile_fragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/post_details_fragment"
@@ -45,6 +27,24 @@
             android:id="@+id/action_postDetailsFragment_to_postCommentsFragment"
             app:destination="@id/post_comments_fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/albums_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
+        android:label="albums_fragment"
+        tools:layout="@layout/fragment_albums"/>
+
+    <fragment
+        android:id="@+id/user_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
+        android:label="user_fragment"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/post_comments_fragment"

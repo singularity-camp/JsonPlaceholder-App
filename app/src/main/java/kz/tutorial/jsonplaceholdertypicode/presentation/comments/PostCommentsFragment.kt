@@ -1,8 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.presentation.comments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +18,7 @@ import org.koin.core.parameter.parametersOf
 class PostCommentsFragment : Fragment() {
 
     private val args: PostCommentsFragmentArgs by navArgs()
-    private val vm: PostCommentsViewModel by viewModel{
+    private val vm: PostCommentsViewModel by viewModel {
         parametersOf(args.postId)
     }
 
@@ -28,9 +26,7 @@ class PostCommentsFragment : Fragment() {
     private lateinit var adapter: CommentAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         vm
         return inflater.inflate(R.layout.fragment_post_comments, container, false)
@@ -58,10 +54,8 @@ class PostCommentsFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        val currentContext = context ?: return
-
         rvComments.adapter = adapter
-        rvComments.layoutManager = LinearLayoutManager(currentContext)
+        rvComments.layoutManager = LinearLayoutManager(context ?: return)
 
         val spaceItemDecoration =
             SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
@@ -69,8 +63,7 @@ class PostCommentsFragment : Fragment() {
     }
 
     private fun initObservers() {
-        vm.commentsLiveData.observe(viewLifecycleOwner) {
-            Log.i(TAG, it.size.toString())
+        vm.comments.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
     }

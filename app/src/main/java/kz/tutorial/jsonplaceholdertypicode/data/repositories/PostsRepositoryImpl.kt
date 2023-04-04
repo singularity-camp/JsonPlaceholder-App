@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.data
+package kz.tutorial.jsonplaceholdertypicode.data.repositories
 
 import kz.tutorial.jsonplaceholdertypicode.data.network.MainApi
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
@@ -11,6 +11,6 @@ class PostsRepositoryImpl(private val mainApi: MainApi) : PostsRepository {
     }
 
     override suspend fun getPostDetails(id: Int): Post {
-        return mainApi.getPostDetailsById(id = id.toString())
+        return mainApi.getPostDetailsById(id = id)
     }
 }

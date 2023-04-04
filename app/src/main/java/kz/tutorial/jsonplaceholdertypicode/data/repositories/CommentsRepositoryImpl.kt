@@ -1,4 +1,4 @@
-package kz.tutorial.jsonplaceholdertypicode.data
+package kz.tutorial.jsonplaceholdertypicode.data.repositories
 
 import kz.tutorial.jsonplaceholdertypicode.data.network.MainApi
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
