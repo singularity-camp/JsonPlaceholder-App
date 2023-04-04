@@ -5,27 +5,76 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UsersFragment : Fragment() {
+
+    val viewModel: UsersFragmentViewmodel by viewModel()
+
+    lateinit var rvUsers: RecyclerView
+
+    lateinit var adapter: UsersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_placeholder, container, false)
-        //TODO: По сути тут ничего сложного.
-        // Здесь вам просто нужно запустить запрос на https://jsonplaceholder.typicode.com/users
-        // Моделька у вас уже есть
-        // Дальше вам нужно просто создать экран отображения пользователей по фигме и нашей архитектуре
-        //Рекомендую идти снизу вверх по древу зависимостей
-        //Также, не забываем про клик на имейл
+        return inflater.inflate(R.layout.fragment_users, container, false)
+    }
 
-        //TODO: Советую попробовать и сделать доп задание:
-        //1: Создать отдельную модельку для отображения только той информации
-        // которая изображена в списке и назвать её UserShort.
-        // Тем самым вам конечно нужно будет создать отдельный Use Case, метод в репозитории итд
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+        initAdapter()
+        setupRecyclerView()
+        initObservers()
+    }
+
+    private fun initViews(view: View) {
+        with(view) {
+            rvUsers = findViewById(R.id.rv_users)
+        }
+    }
+
+    private fun initAdapter() {
+        adapter = UsersAdapter(
+            layoutInflater = layoutInflater,
+            onUserClick = this::onUserClick,
+            onEmailClick = this::onEmailClick
+        )
+    }
+
+    private fun onUserClick(userId: Int) {
+        ///
+    }
+
+    private fun onEmailClick(email: String) {
+        context?.startEmail(email)
+    }
+
+    private fun setupRecyclerView() {
+        rvUsers.adapter = adapter
+        rvUsers.layoutManager = LinearLayoutManager(context)
+
+        val spaceItemDecoration =
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
+        rvUsers.addItemDecoration(spaceItemDecoration)
+    }
+
+    private fun initObservers() {
+        viewModel.usersLiveData.observe(viewLifecycleOwner) { onUsersUpdated(it) }
+
+    }
+
+    private fun onUsersUpdated(users: List<User>) {
+        adapter.submitList(users)
     }
 
 }

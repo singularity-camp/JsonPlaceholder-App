@@ -8,4 +8,5 @@
     <string name="by_w_colon">By:</string>
     <string name="comments">Comments</string>
     <string name="email_w_colon">Email:</string>
+    <string name="fullname_w_colon">Full Name:</string>
 </resources>
