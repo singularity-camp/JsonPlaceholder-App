@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
@@ -52,7 +53,7 @@ class UsersFragment : Fragment() {
     }
 
     private fun onUserClick(userId: Int) {
-        ///
+        findNavController().navigate(UsersFragmentDirections.actionUsersFragmentToUserProfileFragment(userId = userId))
     }
 
     private fun onEmailClick(email: String) {
