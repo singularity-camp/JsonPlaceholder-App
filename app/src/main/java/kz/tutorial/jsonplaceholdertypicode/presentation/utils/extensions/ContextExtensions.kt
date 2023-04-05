@@ -2,9 +2,13 @@ package kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+
 
 fun Context.showToast(msg: String, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, length).show()
@@ -21,3 +25,14 @@ fun Context.startEmail(email: String) {
     //Checking if there is an app that can handle this intent
     startActivity(emailIntent)
 }
+
+fun Context.openLink(link : String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://${link}"))
+    startActivity(intent)
+}
+
+fun Context.showMap(lat: String, lng: String) {
+    val geoIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:$lat,$lng"))
+    startActivity(geoIntent)
+}
+

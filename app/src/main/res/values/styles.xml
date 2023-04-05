@@ -41,4 +41,24 @@
         <item name="cardElevation">4dp</item>
     </style>
 
+    <declare-styleable name="UserInfoItem">
+        <attr name="email" format="string" />
+        <attr name="name" format="string" />
+        <attr name="phone" format="string"/>
+        <attr name="website" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="UserCompanyItem">
+        <attr name="companyName" format="string"/>
+        <attr name="fullName" format="string"/>
+        <attr name="services" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="UserAddressItem">
+        <attr name="street" format="string"/>
+        <attr name="suite" format="string"/>
+        <attr name="city" format="string"/>
+        <attr name="zipcode" format="string"/>
+    </declare-styleable>
+
 </resources>
