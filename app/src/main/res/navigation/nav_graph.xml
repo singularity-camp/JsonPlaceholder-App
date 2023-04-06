@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/posts_fragment">
+
+    <fragment
+        android:id="@+id/posts_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsFragment"
+        android:label="posts_fragment"
+        tools:layout="@layout/fragment_posts">
+        <action
+            android:id="@+id/action_postsFragment_to_postDetailsFragment"
+            app:destination="@id/post_details_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/post_details_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsFragment"
+        android:label="post_details_fragment"
+        tools:layout="@layout/fragment_post_details">
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_postDetailsFragment_to_postCommentsFragment"
+            app:destination="@id/post_comments_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albums_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
+        android:label="albums_fragment"
+        tools:layout="@layout/fragment_albums">
+        <action
+            android:id="@+id/action_albumsFragment_to_albumPhotosFragment"
+            app:destination="@id/album_photos_fragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/users_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
+        android:label="users_fragment"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
+        android:id="@+id/user_profile_fragment"
+        android:label="user_profile_fragment"
+        tools:layout="@layout/fragment_user_profile" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/post_comments_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.comments.PostCommentsFragment"
+        android:label="post_comments_fragment"
+        tools:layout="@layout/fragment_post_comments">
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/album_photos_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.photos.AlbumPhotosFragment"
+        android:label="album_photos_fragment"
+        tools:layout="@layout/fragment_album_photos">
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>
