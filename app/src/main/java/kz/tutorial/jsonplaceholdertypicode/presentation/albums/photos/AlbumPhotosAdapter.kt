@@ -17,8 +17,7 @@ class AlbumPhotosAdapter(private val layoutInflater: LayoutInflater) :
     }
 
     override fun onBindViewHolder(holder: AlbumPhotosViewHolder, position: Int) {
-        val photo = photos[position]
-        holder.bind(photo)
+        holder.bind(photos[position])
     }
 
     override fun getItemCount(): Int = photos.size

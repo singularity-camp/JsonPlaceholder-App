@@ -4,8 +4,9 @@
     <string name="album">Album</string>
     <string name="users">Users</string>
     <string name="profile">Profile</string>
-    <string name="email">Email: </string>
-    <string name="by">Email: </string>
+    <string name="email">Email:</string>
+    <string name="by">Email:</string>
     <string name="comments">Comments</string>
     <string name="show_all">Show All</string>
+    <string name="full_name">Full Name:</string>
 </resources>

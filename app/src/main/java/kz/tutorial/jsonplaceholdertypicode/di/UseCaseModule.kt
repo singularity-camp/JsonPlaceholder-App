@@ -8,6 +8,7 @@ val useCaseModule = module {
     factory { GetPostDetailsUseCase(get()) }
     factory { GetCommentsUseCase(get()) }
     factory { GetUserUseCase(get()) }
+    factory { GetUsersUseCase(get()) }
     factory { GetAlbumsUseCase(get()) }
     factory { GetAlbumPhotosUseCase(get()) }
     factory { GetRemoteAlbumByIdUseCase(get()) }
