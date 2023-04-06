@@ -5,25 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class PostsFragment : Fragment() {
 
     private val vm: PostsViewModel by viewModel()
 
-    lateinit var rvPosts: RecyclerView
+    private lateinit var rvPosts: RecyclerView
 
-    lateinit var adapter: PostAdapter
+    private lateinit var adapter: PostAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_posts, container, false)
     }
@@ -42,8 +43,14 @@ class PostsFragment : Fragment() {
     private fun initAdapter() {
         adapter = PostAdapter(layoutInflater)
         adapter.listener = ClickListener {
-
+            onPostClick(it)
         }
+    }
+
+    private fun onPostClick(post: Post) {
+        findNavController().navigate(
+            PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment(post.id)
+        )
     }
 
     private fun initRecycler() {
@@ -52,7 +59,8 @@ class PostsFragment : Fragment() {
         rvPosts.adapter = adapter
         rvPosts.layoutManager = LinearLayoutManager(currentContext)
 
-        val spaceItemDecoration = SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
+        val spaceItemDecoration =
+            SpaceItemDecoration(verticalSpaceInDp = 8, horizontalSpaceInDp = 16)
         rvPosts.addItemDecoration(spaceItemDecoration)
     }
 
