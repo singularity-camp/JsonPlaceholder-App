@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.UserShort
+import kz.tutorial.jsonplaceholdertypicode.presentation.utils.ClickListener
 
 class UsersAdapter(
     private val layoutInflater: LayoutInflater,
     private val onEmailClick: (String) -> Unit,
 ) : ListAdapter<UserShort, UsersViewHolder>(DiffCallback()) {
+
+    var onItemClicked: ClickListener<UserShort>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val itemView = layoutInflater.inflate(R.layout.item_user, parent, false)
@@ -20,6 +23,9 @@ class UsersAdapter(
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         val user = getItem(position)
         holder.bind(user)
+        holder.itemView.setOnClickListener {
+            onItemClicked?.onClick(user)
+        }
         holder.tvUserEmail.setOnClickListener { onEmailClick(user.email) }
     }
 }
