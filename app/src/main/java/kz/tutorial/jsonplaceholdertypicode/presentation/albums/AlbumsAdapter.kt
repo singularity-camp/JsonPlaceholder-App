@@ -10,7 +10,7 @@ class AlbumsAdapter(
     private val layoutInflater: LayoutInflater,
     private val onAlbumClick: (albumId: Int) -> Unit,
     private val onUserClick: (userId: Int) -> Unit,
-) : androidx.recyclerview.widget.ListAdapter<Album, AlbumsViewHolder>(DIFF_CALLBACK()) {
+) : androidx.recyclerview.widget.ListAdapter<Album, AlbumsViewHolder>(DIFF_CALLBACK_ALBUM()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumsViewHolder {
         val view = layoutInflater.inflate(R.layout.item_album, parent, false)
         return AlbumsViewHolder(view)
@@ -24,7 +24,7 @@ class AlbumsAdapter(
     }
 }
 
-private class DIFF_CALLBACK : ItemCallback<Album>() {
+private class DIFF_CALLBACK_ALBUM : ItemCallback<Album>() {
     override fun areItemsTheSame(old: Album, new: Album): Boolean {
         return old.id == new.id
     }

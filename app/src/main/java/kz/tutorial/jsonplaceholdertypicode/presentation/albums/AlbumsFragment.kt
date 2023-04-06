@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +19,7 @@ class AlbumsFragment : Fragment() {
     private lateinit var adapter: AlbumsAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         vm
         return inflater.inflate(R.layout.fragment_albums, container, false)
@@ -40,13 +39,15 @@ class AlbumsFragment : Fragment() {
 
     private fun initAdapter() {
         adapter = AlbumsAdapter(
-            layoutInflater,
-            onAlbumClick = this::onAlbumClick,
-            onUserClick = this::onUserClick
+            layoutInflater, onAlbumClick = this::onAlbumClick, onUserClick = this::onUserClick
         )
     }
 
-    private fun onAlbumClick(albumId: Int) {}
+    private fun onAlbumClick(albumId: Int) {
+        findNavController().navigate(
+            AlbumsFragmentDirections.actionAlbumsFragmentToAlbumPhotosFragment(albumId)
+        )
+    }
 
     private fun onUserClick(userId: Int) {}
 

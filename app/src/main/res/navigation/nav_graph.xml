@@ -32,7 +32,12 @@
         android:id="@+id/albums_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
         android:label="albums_fragment"
-        tools:layout="@layout/fragment_albums"/>
+        tools:layout="@layout/fragment_albums">
+        <action
+            android:id="@+id/action_albumsFragment_to_albumPhotosFragment"
+            app:destination="@id/album_photos_fragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/user_fragment"
@@ -53,6 +58,16 @@
         tools:layout="@layout/fragment_post_comments">
         <argument
             android:name="postId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/album_photos_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.photos.AlbumPhotosFragment"
+        android:label="album_photos_fragment"
+        tools:layout="@layout/fragment_album_photos">
+        <argument
+            android:name="albumId"
             app:argType="integer" />
     </fragment>
 
