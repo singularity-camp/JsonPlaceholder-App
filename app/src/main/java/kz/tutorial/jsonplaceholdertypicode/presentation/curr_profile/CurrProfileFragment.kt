@@ -1,21 +1,25 @@
-package kz.tutorial.jsonplaceholdertypicode.presentation.user_profile
+package kz.tutorial.jsonplaceholdertypicode.presentation.curr_profile
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
-import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetUserUseCase
+import kz.tutorial.jsonplaceholdertypicode.presentation.user_profile.UserProfileFragmentArgs
+import kz.tutorial.jsonplaceholdertypicode.presentation.user_profile.UserProfileViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserAddressItem
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserCompanyItem
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserInfoItem
@@ -25,13 +29,13 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEm
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class UserProfileFragment(private val userId : Int, private val getUserUseCase: GetUserUseCase) : Fragment() {
+private const val CURR_USER_ID = 1
 
-    private val vm : UserProfileViewModel by viewModel {
-        parametersOf(args.userId)
+class CurrProfileFragment : Fragment() {
+
+    private val vm : CurrProfileViewModel by viewModel {
+        parametersOf(CURR_USER_ID)
     }
-
-    private val args : UserProfileFragmentArgs by navArgs()
 
     private lateinit var currUser : User
 
@@ -39,12 +43,13 @@ class UserProfileFragment(private val userId : Int, private val getUserUseCase: 
     private lateinit var itemUserInfo : UserInfoItem
     private lateinit var itemUserCompany : UserCompanyItem
     private lateinit var itemUserAddress : UserAddressItem
+    private lateinit var btnMyToDos : CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user_profile, container, false)
+        return inflater.inflate(R.layout.fragment_curr_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,11 +64,13 @@ class UserProfileFragment(private val userId : Int, private val getUserUseCase: 
             itemUserInfo = findViewById(R.id.item_user_info)
             itemUserAddress = findViewById(R.id.item_user_address)
             itemUserCompany= findViewById(R.id.item_user_company)
+            btnMyToDos = findViewById(R.id.cv_mytodos)
         }
 
         itemUserInfo.tvEmail.setOnClickListener {
             startEmail(currUser.email)
         }
+
 
         itemUserInfo.tvPhone.setOnClickListener {
             startCall(currUser.phone)
@@ -71,6 +78,11 @@ class UserProfileFragment(private val userId : Int, private val getUserUseCase: 
 
         itemUserInfo.tvWebsite.setOnClickListener {
             openLink(currUser.website)
+        }
+
+        btnMyToDos.setOnClickListener {
+            findNavController().navigate(CurrProfileFragmentDirections.actionCurrProfileFragmentToToDosFragment(
+                CURR_USER_ID))
         }
 
         itemUserAddress.btnMap.setOnClickListener {
@@ -160,6 +172,4 @@ class UserProfileFragment(private val userId : Int, private val getUserUseCase: 
     private fun showMap() {
         context?.showMap(currUser.address.geo.lat, currUser.address.geo.lng)
     }
-
-
 }

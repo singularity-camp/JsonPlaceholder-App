@@ -3,6 +3,7 @@ package kz.tutorial.jsonplaceholdertypicode.presentation.utils
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import kz.tutorial.jsonplaceholdertypicode.R
 
@@ -10,7 +11,7 @@ class UserInfoItem @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : CardView(context, attrs, defStyleAttr) {
 
     var tvEmail : TextView
     var tvName : TextView
