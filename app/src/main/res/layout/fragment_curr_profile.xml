@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.user_profile.UserProfileFragment">
+    tools:context=".presentation.curr_profile.CurrProfileFragment"
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -29,6 +29,22 @@
             app:cardBackgroundColor="@color/ui_01"
             app:cardCornerRadius="8dp"
             />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_mytodos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/ui_01">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/my_todos"
+                style="@style/Header1"
+                android:textColor="@color/main_01"
+                android:gravity="center"
+                android:padding="16dp"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,5 +79,4 @@
             app:cardCornerRadius="8dp"/>
 
     </LinearLayout>
-
 </androidx.core.widget.NestedScrollView>

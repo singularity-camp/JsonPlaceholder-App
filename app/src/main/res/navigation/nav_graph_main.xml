@@ -34,10 +34,6 @@
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragment"
         android:label="AlbumsFragment" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.profile.ProfileFragment"
-        android:label="ProfileFragment" />
-    <fragment
         android:id="@+id/usersFragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
         android:label="UsersFragment" >
@@ -65,6 +61,24 @@
             android:name="userId"
             app:argType="integer"
             android:defaultValue="0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/currProfileFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.curr_profile.CurrProfileFragment"
+        android:label="CurrProfileFragment" >
+        <action
+            android:id="@+id/action_currProfileFragment_to_toDosFragment"
+            app:destination="@id/toDosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/toDosFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.curr_profile.ToDosFragment"
+        android:label="fragment_to_dos"
+        tools:layout="@layout/fragment_to_dos" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
 
 
