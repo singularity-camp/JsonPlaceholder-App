@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".presentation.user_profile.UserProfileFragment"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/ui_03">
 
     <TextView
         android:id="@+id/tv_username"
@@ -15,7 +16,7 @@
         android:textColor="@color/text_01"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
-        tools:text="Username here"/>
+        tools:text="Username here" />
 
     <kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserInfoItem
         android:id="@+id/item_user_info"
