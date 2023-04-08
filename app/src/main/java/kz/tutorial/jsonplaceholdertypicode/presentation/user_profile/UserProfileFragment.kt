@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kz.tutorial.jsonplaceholdertypicode.domain.use_cases.GetUserUseCase
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserAddressItem
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserCompanyItem
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.UserInfoItem
@@ -24,7 +25,7 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEm
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class UserProfileFragment : Fragment() {
+class UserProfileFragment(private val userId : Int, private val getUserUseCase: GetUserUseCase) : Fragment() {
 
     private val vm : UserProfileViewModel by viewModel {
         parametersOf(args.userId)
