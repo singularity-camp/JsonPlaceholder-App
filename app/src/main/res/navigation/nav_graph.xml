@@ -42,13 +42,30 @@
     <fragment
         android:id="@+id/users_fragment"
         android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragment"
-        android:label="users_fragment"
-        tools:layout="@layout/fragment_users" />
+        android:label="users_fragment">
+        <action
+            android:id="@+id/action_usersFragment_to_userProfileFragment"
+            app:destination="@id/user_profile_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/user_profile_fragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.users.profile.UserProfileFragment"
         android:label="user_profile_fragment"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="fullname"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/profile_fragment"

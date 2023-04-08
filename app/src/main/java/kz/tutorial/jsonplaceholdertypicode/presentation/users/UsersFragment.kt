@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.presentation.albums.AlbumsFragmentDirections
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.SpaceItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,7 +43,16 @@ class UsersFragment : Fragment() {
         )
     }
 
-    private fun onUserClick(userId: Int) {}
+    private fun onUserClick(userId: Int, username: String, fullname: String, email: String) {
+        findNavController().navigate(
+            UsersFragmentDirections.actionUsersFragmentToUserProfileFragment(
+                userId,
+                username,
+                email,
+                fullname
+            )
+        )
+    }
 
     private fun onEmailClick(email: String) {}
 

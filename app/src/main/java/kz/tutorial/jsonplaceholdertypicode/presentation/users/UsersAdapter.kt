@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.tutorial.jsonplaceholdertypicode.R
 import kz.tutorial.jsonplaceholdertypicode.domain.models.User
+import kotlin.reflect.KFunction4
 
 class UsersAdapter(
     private val layoutInflater: LayoutInflater,
-    private val onUserClick: (userId: Int) -> Unit,
+    private val onUserClick: KFunction4<Int, String, String, String, Unit>,
     private val onEmailClick: (email: String) -> Unit
 ) : RecyclerView.Adapter<UsersViewHolder>() {
 
@@ -23,7 +24,14 @@ class UsersAdapter(
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bind(users[position])
-        holder.tvUsername.setOnClickListener { onUserClick(users[position].id) }
+        holder.tvUsername.setOnClickListener {
+            onUserClick(
+                users[position].id,
+                users[position].username,
+                users[position].email,
+                users[position].name
+            )
+        }
         holder.tvEmail.setOnClickListener { onEmailClick(users[position].email) }
     }
 
