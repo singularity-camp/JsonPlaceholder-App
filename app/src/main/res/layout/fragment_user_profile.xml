@@ -22,10 +22,17 @@
             android:textColor="@color/text_01"
             tools:text="User Name Here" />
 
-
         <include
             android:id="@+id/rv_user_links"
             layout="@layout/item_user_links"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp" />
+
+        <include
+            android:id="@+id/cv_todo"
+            layout="@layout/item_todo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

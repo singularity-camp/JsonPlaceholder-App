@@ -7,15 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
+private const val CURRENT_USER_ID = 2
+
 class UserProfileFragment : Fragment() {
     private val vm: UserProfileViewModel by viewModel {
-        parametersOf(args.userId)
+        parametersOf(args.userId, CURRENT_USER_ID)
     }
 
     private val args: UserProfileFragmentArgs by navArgs()
@@ -35,6 +41,7 @@ class UserProfileFragment : Fragment() {
     private lateinit var tvLocation: TextView
     private lateinit var lat: String
     private lateinit var lng: String
+    private lateinit var cvTodo: CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -66,6 +73,7 @@ class UserProfileFragment : Fragment() {
             tvCity = findViewById(R.id.tv_city)
             tvZipcode = findViewById(R.id.tv_zipcode)
             tvLocation = findViewById(R.id.tv_show_on_map)
+            cvTodo = findViewById(R.id.cv_todo)
         }
     }
 
@@ -92,6 +100,10 @@ class UserProfileFragment : Fragment() {
                 lng = address.geo.lng
             }
         }
+
+        vm.currentUser.observe(viewLifecycleOwner) {
+            cvTodo.isVisible = it == CURRENT_USER_ID
+        }
     }
 
     private fun initListeners() {
@@ -114,6 +126,9 @@ class UserProfileFragment : Fragment() {
             val location = Uri.parse("geo:$lat,$lng")
             val mapIntent = Intent(Intent.ACTION_VIEW, location)
             startActivity(mapIntent)
+        }
+        cvTodo.setOnClickListener {
+
         }
     }
 }

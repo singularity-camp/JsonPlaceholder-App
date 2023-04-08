@@ -21,4 +21,6 @@
     <string name="website">Website:</string>
     <string name="company_title">Company</string>
     <string name="address_title">Address</string>
+    <string name="my_todos">My ToDos</string>
+    <string name="your_todos">Your ToDos</string>
 </resources>

@@ -38,7 +38,7 @@ val viewModelModule = module {
     viewModel {
         UsersViewModel(get())
     }
-    viewModel { (userId: Int) ->
-        UserProfileViewModel(userId = userId, getUserUseCase = get())
+    viewModel { (userId: Int, currentId: Int) ->
+        UserProfileViewModel(userId = userId, getUserUseCase = get(), currentId = currentId)
     }
 }

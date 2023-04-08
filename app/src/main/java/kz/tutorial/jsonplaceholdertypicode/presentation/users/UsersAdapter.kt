@@ -9,7 +9,7 @@ import kotlin.reflect.KFunction4
 
 class UsersAdapter(
     private val layoutInflater: LayoutInflater,
-    private val onUserClick: KFunction4<Int, String, String, String, Unit>,
+    private val onUserClick: (userId: Int, username: String, fullname: String, email: String) -> Unit,
     private val onEmailClick: (email: String) -> Unit
 ) : RecyclerView.Adapter<UsersViewHolder>() {
 
