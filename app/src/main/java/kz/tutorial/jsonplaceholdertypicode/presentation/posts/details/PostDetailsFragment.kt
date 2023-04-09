@@ -60,7 +60,6 @@ class PostDetailsFragment : Fragment() {
 
 
         postShowAllTextView.setOnClickListener {
-            Log.i(TAG, args.postId.toString())
             findNavController().navigate(
                 PostDetailsFragmentDirections.actionPostDetailsFragmentToPostCommentsFragment(args.postId)
             )

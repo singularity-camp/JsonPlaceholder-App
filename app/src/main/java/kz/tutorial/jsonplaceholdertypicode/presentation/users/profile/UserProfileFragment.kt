@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -128,7 +127,11 @@ class UserProfileFragment : Fragment() {
             startActivity(mapIntent)
         }
         cvTodo.setOnClickListener {
-
+            findNavController().navigate(
+                UserProfileFragmentDirections.actionUserProfileFragmentToToDoFragment(
+                    CURRENT_USER_ID
+                )
+            )
         }
     }
 }

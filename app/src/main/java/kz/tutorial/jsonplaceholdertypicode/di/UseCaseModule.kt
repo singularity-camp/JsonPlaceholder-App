@@ -12,4 +12,5 @@ val useCaseModule = module {
     factory { GetAlbumsUseCase(get()) }
     factory { GetAlbumPhotosUseCase(get()) }
     factory { GetRemoteAlbumByIdUseCase(get()) }
+    factory { GetToDoUseCase(get()) }
 }
