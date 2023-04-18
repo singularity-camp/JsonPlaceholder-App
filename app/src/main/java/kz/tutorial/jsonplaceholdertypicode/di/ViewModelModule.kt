@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 
 val viewModelModule = module {
-    viewModel { PostsViewModel(get()) }
+    viewModel { PostsViewModel(getPostsUseCase = get(), submitPostUseCase = get()) }
     viewModel { (postId: Int) -> //Так я позволяю передавать айди поста во время работы приложения
         PostDetailsViewModel(
             postId = postId,

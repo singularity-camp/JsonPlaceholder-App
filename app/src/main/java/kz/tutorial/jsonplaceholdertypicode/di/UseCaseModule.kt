@@ -9,4 +9,5 @@ val useCaseModule = module {
     factory { GetPostCommentsUseCase(get()) }
     factory { GetUserUseCase(get()) }
     factory { GetAlbumsUseCase(get()) }
+    factory { SubmitPostUseCase(get()) }
 }
