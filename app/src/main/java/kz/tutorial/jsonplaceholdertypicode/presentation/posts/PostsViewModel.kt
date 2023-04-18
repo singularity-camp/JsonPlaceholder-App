@@ -35,8 +35,8 @@ class PostsViewModel(
             viewModelScope.launch {
                 val postInServer = submitPostUseCase.invoke(
                     userId = 1L,
-                    title = "New Post",
-                    body = "New Post Body"
+                    title = "New Post. Form Url",
+                    body = "New Post Body. Form Url"
                 )
                 Timber.e("Our submitted post = $postInServer")
             }

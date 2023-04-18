@@ -1,7 +1,6 @@
 package kz.tutorial.jsonplaceholdertypicode.data.network
 
 import kz.tutorial.jsonplaceholdertypicode.data.models.AlbumResponse
-import kz.tutorial.jsonplaceholdertypicode.data.models.PostRequest
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Comment
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Photo
 import kz.tutorial.jsonplaceholdertypicode.domain.models.Post
@@ -36,8 +35,13 @@ interface MainApi {
     @GET("photos")
     suspend fun getAllPhotos(): List<Photo>
 
+    @FormUrlEncoded
     @POST("posts")
-    suspend fun submitPost(@Body post: PostRequest): Post
+    suspend fun submitPost(
+        @Field("title") title: String,
+        @Field("body") body: String,
+        @Field("userId") userId: Long
+    ): Post
 
 
 }

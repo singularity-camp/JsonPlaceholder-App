@@ -18,7 +18,7 @@ class PostsRepositoryImpl(private val mainApi: MainApi) : PostsRepository {
     override suspend fun submitPost(userId: Long, title: String, body: String): Post {
         val postRequest = PostRequest(userId = userId, title = title, body = body)
 
-        return mainApi.submitPost(postRequest)
+        return mainApi.submitPost(userId = userId, title = title, body = body)
     }
 
 
