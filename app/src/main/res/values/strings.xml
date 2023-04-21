@@ -26,4 +26,8 @@
 
     <string name="my_todo">My ToDos</string>
     <string name="your_todo">Your ToDos</string>
+
+    <string name="post_title">Post Title:</string>
+    <string name="post_body">Post Body:</string>
+    <string name="post_create">Create Post</string>
 </resources>
