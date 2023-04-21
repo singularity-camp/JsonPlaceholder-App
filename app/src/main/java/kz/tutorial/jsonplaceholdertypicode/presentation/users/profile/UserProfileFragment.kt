@@ -11,14 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kz.tutorial.jsonplaceholdertypicode.R
+import kz.tutorial.jsonplaceholdertypicode.constants.CURRENT_USER_ID
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startEmail
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startGeo
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startPhoneCall
 import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.startWebsite
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-
-private const val CURRENT_USER_ID = 7
 
 class UserProfileFragment : Fragment() {
     private val args: UserProfileFragmentArgs by navArgs()

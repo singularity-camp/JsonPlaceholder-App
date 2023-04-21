@@ -13,4 +13,5 @@ val useCaseModule = module {
     factory { GetToDoListUseCase(get()) }
     factory { GetPhotosUseCase(get()) }
     factory { GetAlbumByIdUseCase(get()) }
+    factory { GetSubmitPostUseCase(get()) }
 }

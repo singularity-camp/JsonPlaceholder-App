@@ -5,6 +5,7 @@ import kz.tutorial.jsonplaceholdertypicode.presentation.albums.photos.PhotosView
 import kz.tutorial.jsonplaceholdertypicode.presentation.comments.CommentsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.PostsViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.posts.details.PostDetailsViewModel
+import kz.tutorial.jsonplaceholdertypicode.presentation.posts.newpost.NewPostViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.users.UsersViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.users.profile.UserProfileViewModel
 import kz.tutorial.jsonplaceholdertypicode.presentation.users.todo.ToDoViewModel
@@ -49,5 +50,8 @@ val viewModelModule = module {
             getPhotosUseCase = get(),
             getAlbumByIdUseCase = get()
         )
+    }
+    viewModel {
+        NewPostViewModel(get())
     }
 }
