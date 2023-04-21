@@ -15,6 +15,10 @@
             android:id="@+id/action_postsFragment_to_postDetailsFragment"
             app:destination="@id/postDetailsFragment" />
 
+        <action
+            android:id="@+id/action_postsFragment_to_newPostFragment"
+            app:destination="@id/newPostFragment" />
+
     </fragment>
 
     <fragment
@@ -130,5 +134,10 @@
             app:destination="@id/userProfileFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/newPostFragment"
+        android:name="kz.tutorial.jsonplaceholdertypicode.presentation.posts.newpost.NewPostFragment"
+        android:label="NewPostFragment" />
 
 </navigation>

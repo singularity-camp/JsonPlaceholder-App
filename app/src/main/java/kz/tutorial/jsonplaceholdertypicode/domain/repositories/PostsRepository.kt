@@ -6,4 +6,6 @@ interface PostsRepository {
     suspend fun getPosts(): List<Post>
 
     suspend fun getPost(id: Int): Post
+
+    suspend fun submitPost(title: String, body: String): Post
 }

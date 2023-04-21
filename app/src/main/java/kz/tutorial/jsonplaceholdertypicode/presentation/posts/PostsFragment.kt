@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class PostsFragment : Fragment() {
 
     private val vm: PostsViewModel by viewModel()
+
+    private lateinit var btnNewPostFragment: Button
 
     lateinit var rvPosts: RecyclerView
 
@@ -32,6 +35,7 @@ class PostsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
+        initButton()
         initAdapter()
         initRecycler()
         initObservers()
@@ -39,6 +43,13 @@ class PostsFragment : Fragment() {
 
     private fun initViews(view: View) {
         rvPosts = view.findViewById(R.id.rv_posts)
+        btnNewPostFragment = view.findViewById(R.id.btn_new_post)
+    }
+
+    private fun initButton() {
+        btnNewPostFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_postsFragment_to_newPostFragment)
+        }
     }
 
     private fun initAdapter() {

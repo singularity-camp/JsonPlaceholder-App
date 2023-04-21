@@ -1,10 +1,9 @@
 package kz.tutorial.jsonplaceholdertypicode.data.network
 
+import kz.tutorial.jsonplaceholdertypicode.data.models.PostRequest
 import kz.tutorial.jsonplaceholdertypicode.data.models.RemoteAlbum
 import kz.tutorial.jsonplaceholdertypicode.domain.models.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MainApi {
 
@@ -39,5 +38,8 @@ interface MainApi {
 
     @GET("todos")
     suspend fun getToDoList(@Query("userId") userId: Int): List<ToDo>
+
+    @POST("posts")
+    suspend fun submitPost(@Body post: PostRequest): Post
 
 }
