@@ -1,33 +1,25 @@
 package kz.tutorial.jsonplaceholdertypicode.presentation
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kz.tutorial.jsonplaceholdertypicode.R
-import kz.tutorial.jsonplaceholdertypicode.presentation.utils.extensions.lazyView
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
 class MainActivity : AppCompatActivity() {
 
-    private val bnvMain: BottomNavigationView by lazyView(R.id.bnv_main)
-
-    private lateinit var navHostFragment: NavHostFragment
-    private lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            val personName = remember {
+                mutableStateOf("Ulpan")
+            }
 
-        initNavigation()
+            MainScreen(
+                personName = personName.value,
+                onPersonNameChange = { personName.value = "Dulat" }
+            )
+
+        }
     }
-
-    private fun initNavigation() {
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment
-        navController = navHostFragment.navController
-
-        bnvMain.setupWithNavController(navController)
-    }
-
 }
